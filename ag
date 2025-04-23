@@ -1,0 +1,218 @@
+"""
+Investigation‑Graph Agent (LLM‑driven, KQL‑only)
+================================================
+
+*Aligns with the exact node/edge model in your diagram.*
+
+### Node labels
+| Label | Purpose |
+|-------|---------|
+| **Hypothesis** | Candidate scenario; attrs: `conf`, `status` (`open/confirmed/ruled_out`) |
+| **Question**   | Human‑readable question + `kql` query |
+| **Answer**     | Result rows JSON |
+| **Entity**     | Any artefact mentioned (File, Process, IP, …) |
+| **Verdict**    | Final outcome of a hypothesis |
+
+### Edge verbs
+* `Hypothesis` **─SEEKS→** `Question`
+* `Question` **─ANSWERED_BY→** `Answer`
+* `Answer` **─SUPPORTS→ / ─REFUTES→** `Hypothesis`
+* `Answer` **─MENTIONS→** `Entity`
+* `Hypothesis` **─SPAWNED→** `Hypothesis` (child)
+* `Hypothesis` **─RESOLVED_AS→** `Verdict`
+
+The LLM decides **everything**: which nodes to add, which edges to create, and
+how to update confidence.  The host merely executes the `kql_query` tool and
+reflects the model’s JSON instructions into a NetworkX graph.
+"""
+
+from __future__ import annotations
+
+import json, uuid, argparse, asyncio
+from dataclasses import dataclass, field
+from typing import Any, Dict, List
+import networkx as nx
+
+from openai import OpenAI
+from openai.agents import Agent, Tool, OpenAIToolContext
+
+# ---------------------------------------------------------------------------
+# Dataclasses (graph bookkeeping only)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class Hypothesis:
+    desc: str
+    conf: float
+    status: str = "open"
+    id: str = field(default_factory=lambda: f"hyp_{uuid.uuid4().hex[:8]}")
+
+@dataclass
+class Question:
+    prompt: str
+    kql: str
+    hyp_id: str
+    id: str = field(default_factory=lambda: f"q_{uuid.uuid4().hex[:8]}")
+
+@dataclass
+class Answer:
+    rows: Any
+    qid: str
+    id: str = field(default_factory=lambda: f"ans_{uuid.uuid4().hex[:8]}")
+
+# ---------------------------------------------------------------------------
+# Single KQL tool
+# ---------------------------------------------------------------------------
+class KQLTool(Tool):
+    name = "kql_query"
+    description = "Run a KQL query against the Sentinel workspace and return JSON rows."
+
+    async def call(self, ctx: OpenAIToolContext, query: str) -> List[Dict[str, Any]]:
+        return run_kql(query)
+
+
+def run_kql(query: str):  # <‑‑ STUB – replace with real call
+    if "DeviceFileEvents" in query:
+        return [{"FirstSeenIp": "198.51.100.42", "Device": "HR-WKS-02"}]
+    if "DeviceProcessEvents" in query:
+        return [{"ParentProcessName": "powershell.exe"}]
+    return []
+
+# ---------------------------------------------------------------------------
+# LLM‑driven Investigation Agent
+# ---------------------------------------------------------------------------
+class InvestigationGraphAgent(Agent):
+
+    def __init__(self, client: OpenAI):
+        super().__init__(
+            client=client,
+            name="InvestigationGraphAgent",
+            instructions=self._system_prompt(),
+            tools=[KQLTool()],
+        )
+        self.graph = nx.DiGraph()
+
+    async def investigate(self, alert: Dict[str, Any], max_turns: int = 20):
+        msgs: List[Dict[str, str]] = [
+            {
+                "role": "user",
+                "content": "ALERT JSON:\n" + json.dumps(alert, indent=2) +
+                "\nRespond with **one JSON instruction per reply**."
+            }
+        ]
+
+        for _ in range(max_turns):
+            assistant = await self.chat(messages=msgs, model="gpt-4o-mini")
+            msg = assistant.choices[0].message
+            msgs.append(msg)
+
+            # Handle tool call ----------------------------------------------------
+            if msg.tool_call:
+                rows = await self.call_tool(msg.tool_call.name, **msg.tool_call.arguments)
+                msgs.append({
+                    "role": "tool",
+                    "tool_call_id": msg.tool_call.id,
+                    "content": json.dumps(rows)
+                })
+                continue
+
+            # Parse JSON instruction ---------------------------------------------
+            try:
+                ins = json.loads(msg.content)
+            except Exception:
+                msgs.append({"role": "user", "content": "JSON please."})
+                continue
+
+            if ins.get("action") == "finish":
+                break
+
+            self._apply_instruction(ins)
+            # Provide condensed graph state back to LLM (first 25 nodes)
+            msgs.append({
+                "role": "user",
+                "content": "GRAPH SNAPSHOT:\n" + json.dumps(list(self.graph.nodes(data=True))[:25])
+            })
+
+        return self.graph
+
+    # ---------------- instruction handlers ----------------
+    def _apply_instruction(self, ins: Dict[str, Any]):
+        act = ins.get("action")
+
+        if act == "add_hypothesis":
+            h = Hypothesis(ins["description"], ins.get("confidence", 0.1))
+            self.graph.add_node(h.id, type="Hypothesis", desc=h.desc, conf=h.conf)
+        elif act == "spawn_question":
+            q = Question(ins["prompt"], ins["kql"], ins["hypothesis_id"])
+            self.graph.add_node(q.id, type="Question", prompt=q.prompt, kql=q.kql)
+            self.graph.add_edge(q.hyp_id, q.id, label="SEEKS")
+        elif act == "add_answer":
+            a = Answer(ins["rows"], ins["question_id"])
+            self.graph.add_node(a.id, type="Answer", rows=a.rows)
+            self.graph.add_edge(a.qid, a.id, label="ANSWERED_BY")
+            # support / refute edges
+            for hid in ins.get("supports", []):
+                self.graph.add_edge(a.id, hid, label="SUPPORTS", color="green")
+            for hid in ins.get("refutes", []):
+                self.graph.add_edge(a.id, hid, label="REFUTES", color="red")
+            # entity mentions
+            for ent in ins.get("mentions", []):
+                eid = ent.get("id") or f"ent_{uuid.uuid4().hex[:6]}"
+                self.graph.add_node(eid, type="Entity", name=ent["name"], etype=ent.get("etype"))
+                self.graph.add_edge(a.id, eid, label="MENTIONS")
+        elif act == "evaluate":
+            hid = ins["hypothesis_id"]
+            self.graph.nodes[hid]["conf"] = ins["confidence"]
+            self.graph.nodes[hid]["status"] = ins["status"]
+            if ins["status"] in {"confirmed", "ruled_out"}:
+                vid = f"ver_{uuid.uuid4().hex[:8]}"
+                self.graph.add_node(vid, type="Verdict", status=ins["status"])
+                self.graph.add_edge(hid, vid, label="RESOLVED_AS")
+        elif act == "spawn_hypothesis":  # child hypo
+            parent = ins["parent_id"]
+            h = Hypothesis(ins["description"], 0.1)
+            self.graph.add_node(h.id, type="Hypothesis", desc=h.desc, conf=h.conf)
+            self.graph.add_edge(parent, h.id, label="SPAWNED", style="dotted")
+
+    # ---------------- system prompt ----------------------
+    @staticmethod
+    def _system_prompt():
+        return (
+            "You are a SOC Investigation Agent.  Maintain a property graph with\n"
+            "node types: Hypothesis, Question, Answer, Entity, Verdict.  Edges:\n"
+            "Hypothesis‑SEEKS→Question; Question‑ANSWERED_BY→Answer;\n"
+            "Answer‑SUPPORTS/REFUTES→Hypothesis; Answer‑MENTIONS→Entity;\n"
+            "Hypothesis‑SPAWNED→Hypothesis; Hypothesis‑RESOLVED_AS→Verdict.\n"
+            "You have ONE tool: kql_query(query:str).\n"
+            "Workflow: If you need data, first 'spawn_question' then CALL the\n"
+            "tool; after tool response use 'add_answer' to connect it, including\n"
+            "supports/refutes/mentions arrays.  Continually 'evaluate' hypotheses\n"
+            "until all are confirmed (conf>=0.8) or ruled_out (<=0.2).  Finish\n"
+            "with {action:'finish'}.  Respond ONE JSON instruction per message."
+        )
+
+# ---------------------------------------------------------------------------
+# CLI driver
+# ---------------------------------------------------------------------------
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--alert", required=True, help="path to alert.json file")
+    args = ap.parse_args()
+
+    with open(args.alert, "r", encoding="utf-8") as f:
+        alert = json.load(f)
+
+    client = OpenAI()
+    agent = InvestigationGraphAgent(client)
+
+    g = asyncio.run(agent.investigate(alert))
+    print("Nodes:")
+    for n, d in g.nodes(data=True):
+        print(n, d)
+    print("\nEdges:")
+    for u, v, d in g.edges(data=True):
+        print(u, "->", v, d)
+
+if __name__ == "__main__":
+    main()
