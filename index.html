@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fade Kingz – Presfades Studio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-E2u5ZlT0+9rU1u+eouQdqY2jjmdf1u6y4uWYh0Z+q0+5gF83jgWMi/8XPoS2deT+Z7JBYhU3i7SzAfMGGKIstw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root{
+      --purple:#c600ff;
+      --purple-dark:#6400ff;
+      --bg:#0a0a0d;
+      --text-primary:#fff;
+      --text-secondary:#c9c9c9;
+      --card-bg:#18181d;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:'Poppins',sans-serif;}
+    body{background:var(--bg);color:var(--text-primary);line-height:1.6;scroll-behavior:smooth;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;width:100%;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(10,10,13,.85);backdrop-filter:blur(6px);z-index:1000;}
+    nav .logo{font-weight:700;font-size:1.1rem;letter-spacing:.05em;}
+    nav ul{list-style:none;display:flex;gap:2rem;}
+    nav a{color:var(--text-primary);text-decoration:none;font-weight:500;transition:color .2s;}
+    nav a:hover{color:var(--purple);}
+
+    /* BUTTONS */
+    .btn-primary{display:inline-block;padding:.85rem 2.5rem;font-weight:600;color:#fff;text-decoration:none;border:2px solid var(--purple);border-radius:40px;position:relative;overflow:hidden;}
+    .btn-primary::before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(45deg,var(--purple),var(--purple-dark));opacity:0;transition:opacity .25s ease;z-index:-1;}
+    .btn-primary:hover::before{opacity:1;}
+    .btn-service{display:inline-block;margin-top:1rem;padding:.5rem 1.5rem;border:2px solid var(--purple);border-radius:30px;font-size:.85rem;font-weight:600;text-decoration:none;color:#fff;transition:background .25s ease;}
+    .btn-service:hover{background:var(--purple);}
+    .btn-secondary{display:inline-block;padding:1rem 2.5rem;background:#fff;color:var(--purple);font-weight:700;border-radius:40px;text-decoration:none;transition:background .25s ease,color .25s ease;}
+    .btn-secondary:hover{background:var(--bg);color:#fff;}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.75rem;padding-top:80px;}
+    .hero h1{font-size:2rem;font-weight:600;max-width:720px;}
+
+    /* VISIONARY */
+    .visionary{display:flex;flex-wrap:wrap;gap:2rem;padding:5rem 2rem;align-items:center;justify-content:center;}
+    .visionary .avatar-circle{width:230px;height:230px;border:4px solid var(--purple);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3rem;font-weight:700;color:var(--purple);}
+    .visionary article{max-width:460px;}
+    .visionary h2{font-size:1.5rem;margin-bottom:.5rem;color:var(--purple);}
+    .visionary p{color:var(--text-secondary);font-size:.95rem;}
+
+    /* SECTION TITLE */
+    section h3.section-title{font-size:1.75rem;text-align:center;margin-bottom:2.5rem;color:var(--purple);}
+
+    /* SERVICES */
+    .services{padding:5rem 2rem;}
+    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;max-width:1200px;margin:0 auto;}
+    .card{background:var(--card-bg);border:2px solid rgba(198,0,255,.25);border-radius:12px;padding:1.75rem 1.25rem 1.5rem;text-align:center;transition:transform .25s ease,border-color .25s ease;}
+    .card:hover{transform:translateY(-6px);border-color:var(--purple);}
+    .card i{font-size:1.75rem;color:var(--purple);margin-bottom:.75rem;}
+    .card h4{font-size:1.1rem;margin-bottom:.35rem;}
+    .card .price{font-weight:700;font-size:1rem;color:var(--purple);}
+    .card .duration{font-size:.8rem;color:var(--text-secondary);margin-top:.1rem;}
+    .card p{font-size:.9rem;color:var(--text-secondary);margin:.45rem 0 .75rem;min-height:48px;}
+
+    /* INSTAGRAM */
+    .insta{padding:5rem 2rem;max-width:1100px;margin:0 auto;}
+    .insta iframe{width:100%;min-height:480px;border:none;border-radius:12px;}
+
+    /* CTA */
+    .cta{background:var(--purple);text-align:center;padding:4rem 2rem;}
+    .cta h3{font-size:1.75rem;margin-bottom:1.5rem;}
+
+    /* FOOTER */
+    .site-footer{background:#000;padding:3rem 1.5rem 2rem;color:#fff;}
+    .footer-content{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:2rem;align-items:flex-start;}
+    .footer-contact{flex:1 1 260px;}
+    .footer-contact h3{margin-bottom:1rem;color:var(--purple);font-size:1.25rem;}
+    .footer-contact p{margin:.4rem 0;}
+    .footer-contact i{margin-right:.5rem;color:var(--purple);}
+    .social-icons{margin-top:1.2rem;display:flex;gap:1.2rem;}
+    .social-icons a{font-size:1.6rem;color:var(--purple);transition:color .2s;}
+    .social-icons a:hover{color:#fff;}
+    .site-footer a{color:var(--purple);text-decoration:none;}
+    .site-footer a:hover{color:#fff;}
+    .footer-bottom{text-align:center;margin-top:2rem;font-size:.9rem;color:#777;border-top:1px solid rgba(255,255,255,.1);padding-top:1rem;}
+
+    @media(max-width:768px){
+      .footer-contact{text-align:center;flex:1 1 100%;}
+      .social-icons{justify-content:center;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">FADE KINGZ</div>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#instagram">Instagram</a></li>
+      <li><a href="#book">Book</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero" id="top">
+    <h1>Level‑up your look with Presfades – elite fades, sharp lines, and first‑class grooming.</h1>
+    <a href="#book" class="btn-primary">BOOK YOUR TRANSFORMATION</a>
+  </header>
+
+  <!-- Visionary -->
+  <section class="visionary" id="visionary">
+    <div class="avatar-circle">PF</div>
+    <article>
+      <h2>THE VISIONARY BEHIND THE FADE</h2>
+      <p>Fade Kingz is powered by master barber <strong>Presfades</strong>. With an eye for detail and a passion for precision, Presfades delivers flawless blends, crisp line‑ups, and VIP service tailored to every client.</p>
+      <p><em>Specialties: skin fades • tapers • beard sculpting • deluxe grooming.</em></p>
+    </article>
+  </section>
+
+  <!-- Services -->
+  <section class="services" id="services">
+    <h3 class="section-title">SERVICES</h3>
+    <div class="services-grid">
+      <div class="card">
+        <i class="fa-solid fa-child"></i>
+        <h4>Children Haircut</h4>
+        <p>Kid‑friendly cut with edge/line up.</p>
+        <div class="price">$25‑30</div>
+        <div class="duration">30 min</div>
+        <a href="#book" class="btn-service">Book now</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-scissors"></i>
+        <h4>Haircut &amp; Beard Trim</h4>
+        <p>Fresh cut with precision beard detailing.</p>
+        <div class="price">$45</div>
+        <div class="duration">45 min</div>
+        <a href="#book" class="btn-service">Book now</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-house"></i>
+        <h4>House‑Call Service</h4>
+        <p>Presfades comes to you. Price reflects distance &amp; time.</p>
+        <div class="price">Starts @ $100</div>
+        <div class="duration">60 min</div>
+        <a href="#book" class="btn-service">Book now</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-crown"></i>
+        <h4>Presidential Service</h4>
+        <p>Shampoo &amp; conditioner, any haircut, beard work &amp; more.</p>
+        <div class="price">$80</div>
+        <div class="duration">60 min</div>
+        <a href="#book" class="btn-service">Book now</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-bolt"></i>
+        <h4>Buzz Cut</h4>
+        <p>Even all‑over clip &amp; sharp edge‑up.</p>
+        <div class="price">$20</div>
+        <div class="duration">15 min</div>
+        <a href="#book" class="btn-service">Book now</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-eye"></i>
+        <h4>Eyebrow Razor / Trim</h4>
+        <p>Clean and define your brows.</p>
+        <div class="price">$8</div>
+        <div class="duration">5 min</div>
+        <a href="#book" class="btn-service">Book now</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        <h4>Waxing</h4>
+        <p>Ear, nose, or eyebrow waxing.</p>
+        <div class="price">$20</div>
+        <div class="duration">15 min</div>
+        <a href="#book" class="btn-service">Book now</a>
+      </div>
+
+      <div class="card">
+        <i class="fa-solid fa-gem"></i>
+        <h4>Deluxe Service</h4>
+        <p>Mens cut + beard trim, eyebrow waxing &amp; more.</p>
+        <div class="price">$60</div>
+        <div class="duration">60 min</div>
+        <a href="#book" class="btn-service">Book now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Feed -->
+  <section class="insta" id="instagram">
+    <h3 class="section-title">LATEST FROM INSTAGRAM</h3>
+    <!-- Replace XYZ with your SnapWidget/LightWidget code -->
+    <iframe src="https://snapwidget.com/embed/XYZ" allowtransparency="true" scrolling="no"></iframe>
+  </section>
+
+  <!-- Booking CTA -->
+  <section class="cta" id="book">
+    <h3>READY FOR THE TRANSFORMATION?</h3>
+    <div style="max-width:900px;margin:1.5rem auto;">
+      <iframe src="https://squareup.com/appointments/buyer/widget/XYZ" id="square-booking" style="width:100%;min-height:800px;border:none;border-radius:12px;background:#fff;"></iframe>
+    </div>
+    <a href="https://squareup.com/appointments/book/XYZ" target="_blank" rel="noopener" class="btn-secondary">Open Full Booking Page</a>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="contact">
+    <div class="footer-content">
+      <div class="footer-contact">
+        <h3>Get in Touch</h3>
+        <p><i class="fas fa-phone"></i><a href="tel:5551234567">(555) 123‑4567</a></p>
+        <p><i class="fas fa-envelope"></i><a href="mailto:hello@presfades.com">hello@presfades.com</a></p>
+        <div class="social-icons">
+          <a href="https://instagram.com/presfades" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://g.page/r/CODE" target="_blank" aria-label="Google Reviews"><i class="fas fa-star"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="year"></span> PresFades. All rights reserved.</div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
