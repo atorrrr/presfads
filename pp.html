@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prolific Purpose - Entrepreneur & Creative Community</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables for easy theme changes */
+        :root {
+            --color-background: #1a1a1a; /* Dark background */
+            --color-text: #e0e0e0; /* Light grey text */
+            --color-heading: #ffffff; /* White headings */
+            --color-purple: #9b59b6; /* Example Purple */
+            --color-green: #2ecc71;  /* Example Green */
+            --color-card-bg: #2c2c2c; /* Slightly lighter dark for cards/sections */
+            --font-heading: 'Oswald', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Apply a basic transition to all elements for smoother visual changes */
+        *::before,
+        *::after,
+        * {
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
+        }
+
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px; /* Add padding for smaller screens */
+        }
+
+        /* Logo Styles */
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-top: 30px; /* Add some space at the top */
+        }
+
+        .logo-image {
+            max-width: 150px; /* Adjust size as needed */
+            height: auto;
+            /* Add filter for potential color shift if needed */
+            /* filter: brightness(1.1); */
+        }
+
+        /* Fallback Text Logo Style (if image fails or not used) */
+        .logo-text {
+            font-family: var(--font-heading); /* Or your specific logo font */
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--color-purple); /* Example */
+            /* Add more styling to mimic your logo's look */
+            /* text-shadow: 1px 1px 2px rgba(0,0,0,0.5); */
+        }
+
+
+        /* Hero Section */
+        .hero {
+            background-color: #111; /* Even darker for hero */
+            color: var(--color-heading);
+            padding: 60px 0 60px; /* Adjusted padding */
+            text-align: center;
+            position: relative;
+            overflow: hidden; /* Contain the energy effect */
+            border-bottom: 3px solid var(--color-purple); /* Add a separator */
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--color-text);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .highlight-purple {
+            color: var(--color-purple);
+        }
+
+        .highlight-green {
+            color: var(--color-green);
+        }
+
+        /* Energy Effect (Subtle background flair) */
+        .energy-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Example using gradients - replace with actual image or SVG if needed */
+            background: radial-gradient(ellipse at center, rgba(155, 89, 182, 0.1), transparent 70%),
+                        radial-gradient(ellipse at top left, rgba(46, 204, 113, 0.1), transparent 60%),
+                        radial-gradient(ellipse at bottom right, rgba(155, 89, 182, 0.05), transparent 65%);
+            opacity: 0.6;
+            z-index: 0;
+             pointer-events: none; /* So it doesn't interfere with clicks */
+             animation: pulse 15s infinite ease-in-out; /* Add subtle animation */
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.5; }
+        }
+
+        .hero .container {
+            position: relative; /* To keep content above the effect */
+            z-index: 1;
+        }
+
+
+        /* Call-to-Action Button */
+        .cta-button {
+            display: inline-block;
+            background-color: var(--color-purple);
+            color: #ffffff;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+            text-transform: uppercase;
+            border: 2px solid var(--color-purple); /* Add border */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add base shadow */
+            cursor: pointer; /* Indicate clickable */
+        }
+
+        .cta-button:hover, .cta-button:focus { /* Added :focus for accessibility */
+            background-color: #8e44ad; /* Manual darker purple */
+            border-color: #8e44ad;
+            transform: translateY(-3px); /* Slightly more lift */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Increase shadow on hover */
+            outline: none; /* Remove default focus outline if custom style is sufficient */
+        }
+
+        .discord-cta {
+            background-color: var(--color-green);
+            border-color: var(--color-green);
+        }
+
+        .discord-cta:hover, .discord-cta:focus {
+            background-color: #27ae60; /* Manual darker green */
+            border-color: #27ae60;
+        }
+
+
+        /* Content Sections */
+        .content-section {
+            padding: 60px 0;
+        }
+
+        .content-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-heading);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .content-section p, .content-section ul {
+            margin-bottom: 20px;
+            max-width: 800px; /* Limit text width for readability */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .content-section ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0;
+        }
+
+        .content-section ul li {
+            position: relative;
+            padding-left: 25px; /* Space for custom bullet */
+            margin-bottom: 10px;
+        }
+
+        .content-section ul li::before {
+            content: ''; /* Custom bullet using pseudo-element */
+            position: absolute;
+            left: 0;
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%); /* Adjust vertical centering */
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            /* Alternate colors for list items */
+        }
+        .content-section ul li:nth-child(odd)::before {
+             background-color: var(--color-purple);
+        }
+        .content-section ul li:nth-child(even)::before {
+             background-color: var(--color-green);
+        }
+
+
+        /* Discord Focus Section */
+        .discord-section {
+            background-color: var(--color-card-bg);
+            padding: 60px 20px; /* Add horizontal padding */
+            text-align: center;
+            border-top: 3px solid var(--color-green); /* Add separator */
+            border-bottom: 3px solid var(--color-green); /* Add separator */
+        }
+
+        .discord-section h2 {
+             font-family: var(--font-heading);
+            font-size: 2.5rem;
+            color: var(--color-heading);
+            margin-bottom: 20px;
+        }
+        .discord-section p {
+             max-width: 700px;
+             margin-left: auto;
+             margin-right: auto;
+             margin-bottom: 15px;
+             color: var(--color-text);
+        }
+        .discord-section ul {
+             list-style: none;
+             padding: 0;
+             max-width: 500px;
+             margin: 20px auto 30px auto;
+             text-align: left; /* Keep list text aligned left */
+             display: inline-block; /* Center the block itself */
+        }
+        .discord-section ul li {
+            margin-bottom: 10px;
+            padding-left: 25px; /* Increased padding */
+            position: relative;
+        }
+
+        .discord-section ul li::before {
+            content: '✓'; /* Checkmark icon */
+            color: var(--color-green);
+            position: absolute;
+            left: 0;
+            top: 2px; /* Fine-tune vertical position */
+            font-weight: bold;
+            font-size: 1.2em; /* Make checkmark slightly larger */
+        }
+
+
+        /* Benefits Section */
+        #benefits {
+            padding-bottom: 30px; /* Reduce bottom padding slightly */
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-item {
+            background-color: var(--color-card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 5px solid var(--color-purple); /* Accent border */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add base shadow */
+        }
+        .benefit-item:nth-child(even) {
+            border-left-color: var(--color-green); /* Alternate accent color */
+        }
+
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+            /* You might want to use actual icon fonts (like Font Awesome) here */
+            /* Example: Using emoji for now */
+            line-height: 1;
+        }
+
+        .benefit-item h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--color-heading);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #111;
+            color: var(--color-text);
+            text-align: center;
+            padding: 30px 20px; /* Add horizontal padding */
+            margin-top: 60px;
+            border-top: 3px solid var(--color-purple); /* Match hero bottom border */
+        }
+
+        footer p {
+            margin-bottom: 5px;
+        }
+
+        footer a {
+            color: var(--color-green);
+            text-decoration: none;
+            font-weight: bold; /* Make link slightly bolder */
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover, footer a:focus {
+            color: var(--color-purple);
+            text-decoration: underline; /* Add underline on hover/focus */
+            outline: none;
+        }
+
+        /* Responsive Design Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero .subtitle {
+                font-size: 1.1rem; /* Slightly larger for readability */
+            }
+            .content-section h2, .discord-section h2 {
+                font-size: 2.2rem; /* Adjusted heading size */
+            }
+            .benefits-grid {
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust min size */
+            }
+            .cta-button {
+                 padding: 14px 30px; /* Adjust padding */
+                 font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+             .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+             .content-section h2, .discord-section h2 {
+                font-size: 1.8rem; /* Further reduce heading size */
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr; /* Stack benefits fully */
+                gap: 20px; /* Reduce gap */
+            }
+            .cta-button {
+                padding: 12px 25px;
+                width: 90%; /* Make button take more width */
+                max-width: 300px; /* But not excessively wide */
+            }
+            .discord-section ul {
+                padding: 0 10px; /* Add padding inside the list container */
+            }
+             .logo-image {
+                max-width: 120px; /* Smaller logo on mobile */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <div class="logo">
+                 <span class="logo-text" style="font-family: 'Your Gothic Font Name', var(--font-heading);">PP</span>
+                 </div>
+            <h1>Unleash Your <span class="highlight-purple">Prolific</span> <span class="highlight-green">Purpose</span>.</h1>
+            <p class="subtitle">The Discord community for driven entrepreneurs, creators, barbers, designers & more. Share wins, stay accountable, and grow together.</p>
+            <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" rel="noopener noreferrer" class="cta-button discord-cta">Join the Community on Discord</a>
+            <div class="energy-effect"></div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="container content-section">
+            <h2>What is Prolific Purpose?</h2>
+            <p>Prolific Purpose is more than just a group; it's a high-energy network built for action-takers. Whether you're slinging code, cutting hair, designing visuals, or building your empire, this is where you connect with like-minded individuals serious about meaningful growth and real results.</p>
+            <p>We focus on:</p>
+            <ul>
+                <li><span class="highlight-purple">Sharing Wins:</span> Celebrate your progress, big or small.</li>
+                <li><span class="highlight-green">Mutual Accountability:</span> Stay on track with community support.</li>
+                <li><span class="highlight-purple">Actionable Insights:</span> Exchange practical marketing tips and strategies.</li>
+                <li><span class="highlight-green">Real Connections:</span> Network with peers who understand the hustle.</li>
+            </ul>
+        </section>
+        <section id="discord-focus" class="discord-section">
+            <div class="container">
+                <h2>Discord: The Heart of Our Community</h2>
+                <p>Forget scattered emails and dead forums. All the action happens in our dedicated Discord server. It's the central hub for:</p>
+                <ul>
+                    <li>Real-time discussions and brainstorming.</li>
+                    <li>Dedicated channels for specific topics (marketing, wins, accountability, specific industries).</li>
+                    <li>Instant feedback and support.</li>
+                    <li>Voice chats for deeper connections and masterminds.</li>
+                    <li>Organized resources and shared knowledge.</li>
+                </ul>
+                <p>This is where collaboration sparks and progress accelerates. Ready to plug in?</p>
+                <a href="YOUR_DISCORD_INVITE_LINK" target="_blank" rel="noopener noreferrer" class="cta-button discord-cta">Connect on Discord Now!</a>
+            </div>
+        </section>
+        <section id="benefits" class="container content-section">
+            <h2>Why Join Us?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <span class="benefit-icon">🏆</span> <h3>Celebrate Wins</h3>
+                    <p>Share your achievements and get motivated by others.</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🎯</span>
+                    <h3>Stay Accountable</h3>
+                    <p>Find partners and systems to keep you focused.</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">💡</span>
+                    <h3>Get Real Tips</h3>
+                    <p>Access practical marketing and business strategies.</p>
+                </div>
+                <div class="benefit-item">
+                    <span class="benefit-icon">🤝</span>
+                    <h3>Network & Connect</h3>
+                    <p>Build relationships with driven peers.</p>
+                </div>
+            </div>
+        </section>
+        </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Prolific Purpose. All Rights Reserved.</p>
+            <p><a href="YOUR_DISCORD_INVITE_LINK" target="_blank" rel="noopener noreferrer">Join our Discord Server</a></p>
+        </div>
+    </footer>
+    <script>
+        // Simple script to update the copyright year automatically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+
+</body>
+</html>
