@@ -6,6 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Presfades – Elite Barber Studio | Fort Worth, TX</title>
 
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-2P2S5B0JXH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'G-2P2S5B0JXH');
+  </script>
+
+  
   <meta name="description" content="Presfades is Fort Worth’s premier luxury barber studio offering master‑crafted fades, beard sculpting and VIP grooming. Book your transformation today." />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Presfades – Elite Barber Studio" />
@@ -660,9 +671,9 @@
         </p>
         <div class="social-icons">
           <a href="https://www.instagram.com/presfades/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://facebook.com/YOUR_FACEBOOK_PAGE" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+          <a href="https://www.facebook.com/share/1Z2pc57rmt/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
           <a href="mailto:presfades@gmail.com" aria-label="Email Presfades"><i class="fas fa-envelope"></i></a>
-          <a href="https://g.page/r/YOUR_GOOGLE_PLACE_ID/review" target="_blank" rel="noopener" aria-label="Google Reviews"><i class="fas fa-star"></i></a>
+          <a href="https://search.google.com/local/writereview?placeid=ChIJ2cKEcdpXT6ERvrGM72C88WI&source=g.page.m.kd._&laa=lu-desktop-review-solicitation" target="_blank" rel="noopener" aria-label="Google Reviews"><i class="fas fa-star"></i></a>
         </div>
       </div>
 
@@ -677,4 +688,48 @@
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
+
+  <script>
+// Track booking button clicks
+document.addEventListener('DOMContentLoaded', function() {
+  // Track all booking buttons
+  const bookingButtons = document.querySelectorAll('a[href*="squareup.com"]');
+  
+  bookingButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      gtag('event', 'click', {
+        event_category: 'booking',
+        event_label: 'appointment_booking',
+        value: 1
+      });
+    });
+  });
+
+  // Track phone number clicks
+  const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+  phoneLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      gtag('event', 'click', {
+        event_category: 'contact',
+        event_label: 'phone_call',
+        value: 1
+      });
+    });
+  });
+
+  // Track email clicks
+  const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+  emailLinks.forEach(link => {
+    link.addEventListener('click', function() {
+      gtag('event', 'click', {
+        event_category: 'contact',
+        event_label: 'email',
+        value: 1
+      });
+    });
+  });
+});
+</script>
+
+  
 </html>
