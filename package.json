@@ -1,0 +1,11 @@
+{
+  "name": "presfads",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "htmlhint index.html pp.html"
+  },
+  "devDependencies": {
+    "htmlhint": "^0.16.1"
+  }
+}
