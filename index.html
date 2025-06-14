@@ -91,6 +91,15 @@
       color: transparent;
     }
 
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
     nav ul {
       list-style: none;
       display: flex;
@@ -513,8 +522,23 @@
         nav {
             padding: 0 1rem;
         }
+        .menu-toggle {
+            display: block;
+        }
         nav ul {
             display: none;
+            position: absolute;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 13, 0.95);
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav.open ul {
+            display: flex;
         }
         .hero h1 {
             font-size: 1.8rem;
@@ -577,13 +601,16 @@
 <body>
   <nav>
     <div class="logo" aria-label="Presfades home">PRESFADES</div>
+    <button class="menu-toggle" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
     <ul>
       <li><a href="#services">Services</a></li>
       <li><a href="#instagram">Instagram</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/start" target="_blank" rel="noopener">Book</a></li>
     </ul>
-    </nav>
+  </nav>
 
   <header class="hero" id="top">
     <h1>Fort Worth’s elite fades, sharp lines & VIP grooming all under one roof.</h1>
@@ -592,7 +619,7 @@
 
   <section class="visionary" id="visionary">
     <div class="avatar-circle">
-        <img src="https://i.imgur.com/U1G781I.jpeg" alt="Presfades profile picture">
+        <img src="https://i.imgur.com/U1G781I.jpeg" alt="Presfades profile picture" loading="lazy">
     </div>
     <article>
       <h2>THE VISIONARY BEHIND THE FADE</h2>
@@ -646,7 +673,7 @@
     <h3 class="section-title">LATEST FROM INSTAGRAM</h3>
 
     <script src="https://snapwidget.com/js/snapwidget.js"></script>
-    <iframe src="https://snapwidget.com/embed/1094605" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;  width:100%; " title="Posts from Instagram"></iframe>
+    <iframe src="https://snapwidget.com/embed/1094605" class="snapwidget-widget" allowtransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden;  width:100%; " title="Posts from Instagram" loading="lazy"></iframe>
 
     <a href="https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/start" target="_blank" rel="noopener" class="btn-secondary">Book Appointment</a>
 
@@ -693,6 +720,19 @@
   <script>
 // Track booking, phone, and email link clicks
 document.addEventListener('DOMContentLoaded', function() {
+  const nav = document.querySelector('nav');
+  const toggle = document.querySelector('.menu-toggle');
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      nav.classList.toggle('open');
+    });
+  }
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function() {
+      nav.classList.remove('open');
+    });
+  });
+
   // Track all booking buttons
   const bookingButtons = document.querySelectorAll('a[href*="squareup.com"]');
   
