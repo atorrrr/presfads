@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { trackEvent } from "@/lib/analytics";
 
 export default function Navigation() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,8 +24,13 @@ export default function Navigation() {
   };
 
   const bookTransformation = () => {
-    // Track booking event
-    trackEvent('click', 'engagement', 'book_btn');
+    // Track booking event with Google Analytics if available
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', 'click', {
+        event_category: 'engagement',
+        event_label: 'book_btn'
+      });
+    }
     
     // Redirect to Square booking
     window.open('https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/start', '_blank');
