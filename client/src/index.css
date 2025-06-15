@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Presfades Brand Colors */
+  --purple: #c600ff;
+  --purple-dark: #6400ff;
+  --green: #00ff84;
+  --bg: #0a0a0d;
+  --text-primary: #e6ccff;
+  --text-secondary: #c9c9c9;
+  --card-bg: #18181d;
+  --gradient: linear-gradient(45deg, var(--purple), var(--green));
+  
+  /* Shadcn color variables */
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(285, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 98%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: var(--bg);
+    color: var(--text-secondary);
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-border {
+    position: relative;
+    background: var(--card-bg);
+    border-radius: 16px;
+  }
+
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: var(--gradient);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+  }
+
+  .gradient-bg {
+    background: var(--gradient);
+  }
+
+  .hero-bg {
+    background-image: url('https://i.imgur.com/cTWczet.jpeg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .hero-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(198, 0, 255, 0.3) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(0, 255, 132, 0.3) 0%, transparent 50%),
+      rgba(10, 10, 13, 0.6);
+  }
+
+  .floating-cta {
+    position: fixed;
+    bottom: 20px;
+    left: 5%;
+    right: 5%;
+    z-index: 50;
+    height: 56px;
+    border-radius: 28px;
+    background: var(--gradient);
+    box-shadow: 0 8px 32px rgba(198, 0, 255, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .floating-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(198, 0, 255, 0.6);
+  }
+
+  .service-card {
+    background: var(--card-bg);
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .btn-gradient {
+    background: var(--gradient);
+    transition: all 0.3s ease;
+  }
+
+  .btn-gradient:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px rgba(198, 0, 255, 0.4);
+  }
+
+  .mobile-menu {
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-menu.open {
+    transform: translateX(0);
+  }
+
+  .instagram-grid img {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .fade-in {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .text-brand-primary {
+    color: var(--text-primary);
+  }
+
+  .text-brand-secondary {
+    color: var(--text-secondary);
+  }
+
+  .bg-brand-bg {
+    background-color: var(--bg);
+  }
+
+  .bg-brand-card {
+    background-color: var(--card-bg);
+  }
+}
+
+@media (min-width: 768px) {
+  .floating-cta {
+    display: none !important;
+  }
+}

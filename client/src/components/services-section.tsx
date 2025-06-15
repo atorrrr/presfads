@@ -1,0 +1,82 @@
+import { trackEvent } from "@/lib/analytics";
+
+const services = [
+  {
+    title: "SIGNATURE FADE",
+    description: "Precision fades tailored to your face shape and personal style. Clean, sharp, and perfectly executed.",
+    price: "$45"
+  },
+  {
+    title: "LUXURY TREATMENT",
+    description: "Complete grooming experience with hot towel treatment, beard sculpting, and premium styling.",
+    price: "$85"
+  },
+  {
+    title: "STYLE MAKEOVER",
+    description: "Complete transformation consultation and execution. Discover your new signature look.",
+    price: "$120"
+  },
+  {
+    title: "BEARD SCULPTING",
+    description: "Professional beard trimming and styling to complement your facial features perfectly.",
+    price: "$35"
+  },
+  {
+    title: "QUICK TOUCH-UP",
+    description: "Fast and efficient maintenance cuts to keep your style fresh between appointments.",
+    price: "$25"
+  },
+  {
+    title: "SPECIAL OCCASION",
+    description: "Perfect styling for weddings, events, and special occasions. Look your absolute best.",
+    price: "$95"
+  }
+];
+
+export default function ServicesSection() {
+  const bookTransformation = () => {
+    // Track booking event
+    trackEvent('click', 'engagement', 'book_btn');
+    
+    // Redirect to Square booking
+    window.open('https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/start', '_blank');
+  };
+
+  return (
+    <section id="services" className="py-16 md:py-24 px-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-5xl font-bold text-brand-primary mb-6">
+            PREMIUM <span className="gradient-text">SERVICES</span>
+          </h2>
+          <p className="text-brand-secondary text-lg max-w-2xl mx-auto">
+            Discover our range of professional services designed to elevate your style and confidence
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {services.map((service, index) => (
+            <div key={index} className="service-card gradient-border p-6 text-center">
+              <div className="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 2L13 8h6l-5 4 2 6-6-4-6 4 2-6-5-4h6z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-bold text-brand-primary mb-4">{service.title}</h3>
+              <p className="text-brand-secondary mb-6">
+                {service.description}
+              </p>
+              <p className="text-2xl font-bold gradient-text mb-6">{service.price}</p>
+              <button 
+                onClick={bookTransformation} 
+                className="btn-gradient text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]"
+              >
+                Book Now
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
