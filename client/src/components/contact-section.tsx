@@ -21,7 +21,25 @@ export default function ContactSection() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+          <div className="gradient-border p-8 text-center">
+            <div className="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
+              <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"/>
+              </svg>
+            </div>
+            <h3 className="text-xl font-bold text-brand-primary mb-4">LOCATION</h3>
+            <a 
+              href="https://www.google.com/maps/search/?api=1&query=6700+Silver+Sage+Dr+Fort+Worth+TX+76137" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-gradient text-white px-6 py-3 rounded-full font-semibold inline-block min-h-[48px] min-w-[48px] text-sm"
+            >
+              6700 Silver Sage Dr<br/>
+              Fort Worth, TX 76137
+            </a>
+          </div>
+
           <div className="gradient-border p-8 text-center">
             <div className="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-6">
               <svg className="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -30,10 +48,10 @@ export default function ContactSection() {
             </div>
             <h3 className="text-xl font-bold text-brand-primary mb-4">CALL NOW</h3>
             <a 
-              href="tel:+1234567890" 
+              href="tel:4699010585" 
               className="btn-gradient text-white px-6 py-3 rounded-full font-semibold inline-block min-h-[48px] min-w-[48px]"
             >
-              (123) 456-7890
+              (469) 901-0585
             </a>
           </div>
 
@@ -46,10 +64,10 @@ export default function ContactSection() {
             </div>
             <h3 className="text-xl font-bold text-brand-primary mb-4">EMAIL US</h3>
             <a 
-              href="mailto:contact@presfades.co" 
+              href="mailto:presfades@gmail.com" 
               className="btn-gradient text-white px-6 py-3 rounded-full font-semibold inline-block min-h-[48px] min-w-[48px]"
             >
-              contact@presfades.co
+              presfades@gmail.com
             </a>
           </div>
         </div>

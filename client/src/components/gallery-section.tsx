@@ -46,21 +46,20 @@ export default function GallerySection() {
           </p>
         </div>
 
-        <div className="instagram-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {galleryImages.map((image, index) => (
-            <img 
-              key={index}
-              src={image.src} 
-              alt={image.alt} 
-              className="rounded-lg hover:scale-105 transition-transform" 
-              loading="lazy"
-            />
-          ))}
+        <div className="w-full max-w-4xl mx-auto mb-12">
+          <iframe 
+            src="https://snapwidget.com/embed/1094605" 
+            className="w-full h-96 border-0" 
+            allowtransparency="true" 
+            scrolling="no" 
+            loading="lazy" 
+            title="Posts from Instagram"
+          />
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center">
           <a 
-            href="https://instagram.com/presfades" 
+            href="https://www.instagram.com/presfades/" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="inline-flex items-center gap-3 btn-gradient text-white px-8 py-4 rounded-full font-semibold text-lg min-h-[48px]"

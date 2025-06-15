@@ -22,11 +22,11 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="text-3xl font-bold gradient-text mb-6">PRESFADES</div>
           <p className="text-brand-secondary mb-8">
-            Premium barbering and styling services that elevate your confidence and presence.
+            Fort Worth's elite fades, sharp lines & VIP grooming all under one roof.
           </p>
           <div className="flex justify-center space-x-6 mb-8">
             <a 
-              href="https://instagram.com/presfades" 
+              href="https://www.instagram.com/presfades/" 
               target="_blank" 
               rel="noopener noreferrer" 
               className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center hover:scale-110 transition-transform"
@@ -37,7 +37,18 @@ export default function Home() {
               </svg>
             </a>
             <a 
-              href="tel:+1234567890" 
+              href="https://www.facebook.com/share/1Z2pc57rmt/?mibextid=wwXIfr" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+              aria-label="Follow us on Facebook"
+            >
+              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <a 
+              href="tel:4699010585" 
               className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center hover:scale-110 transition-transform"
               aria-label="Call us"
             >
@@ -46,13 +57,24 @@ export default function Home() {
               </svg>
             </a>
             <a 
-              href="mailto:contact@presfades.co" 
+              href="mailto:presfades@gmail.com" 
               className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center hover:scale-110 transition-transform"
               aria-label="Email us"
             >
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+              </svg>
+            </a>
+            <a 
+              href="https://search.google.com/local/writereview?placeid=ChIJ2cKEcdpXT6ERvrGM72C88WI&source=g.page.m.kd._&laa=lu-desktop-review-solicitation" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="w-12 h-12 gradient-bg rounded-full flex items-center justify-center hover:scale-110 transition-transform"
+              aria-label="Google Reviews"
+            >
+              <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
               </svg>
             </a>
           </div>

@@ -2,34 +2,28 @@ import { trackEvent } from "@/lib/analytics";
 
 const services = [
   {
-    title: "SIGNATURE FADE",
-    description: "Precision fades tailored to your face shape and personal style. Clean, sharp, and perfectly executed.",
-    price: "$45"
+    title: "HAIRCUT",
+    description: "Precision haircut tailored to your style, finished with a sharp line-up.",
+    price: "$60",
+    duration: "Approx. 1 hour"
   },
   {
-    title: "LUXURY TREATMENT",
-    description: "Complete grooming experience with hot towel treatment, beard sculpting, and premium styling.",
-    price: "$85"
+    title: "HAIRCUT & BEARD TRIM", 
+    description: "Complete grooming: precision cut paired with expert beard shaping & line-up.",
+    price: "$75",
+    duration: "Approx. 1 hour"
   },
   {
-    title: "STYLE MAKEOVER",
-    description: "Complete transformation consultation and execution. Discover your new signature look.",
-    price: "$120"
+    title: "AFTER HOURS SERVICE",
+    description: "Premium service outside regular hours. Contact for availability before booking.",
+    price: "$100+",
+    duration: "Approx. 1 hour"
   },
   {
-    title: "BEARD SCULPTING",
-    description: "Professional beard trimming and styling to complement your facial features perfectly.",
-    price: "$35"
-  },
-  {
-    title: "QUICK TOUCH-UP",
-    description: "Fast and efficient maintenance cuts to keep your style fresh between appointments.",
-    price: "$25"
-  },
-  {
-    title: "SPECIAL OCCASION",
-    description: "Perfect styling for weddings, events, and special occasions. Look your absolute best.",
-    price: "$95"
+    title: "EYEBROW SHAPING",
+    description: "Clean up and define your brows with razor/trim. (Add-on to any service).",
+    price: "$5",
+    duration: "Add-on Service"
   }
 ];
 
@@ -63,10 +57,11 @@ export default function ServicesSection() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-brand-primary mb-4">{service.title}</h3>
-              <p className="text-brand-secondary mb-6">
+              <p className="text-brand-secondary mb-4">
                 {service.description}
               </p>
-              <p className="text-2xl font-bold gradient-text mb-6">{service.price}</p>
+              <p className="text-2xl font-bold gradient-text mb-2">{service.price}</p>
+              <p className="text-sm text-brand-secondary mb-6">{service.duration}</p>
               <button 
                 onClick={bookTransformation} 
                 className="btn-gradient text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]"

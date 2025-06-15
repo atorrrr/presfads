@@ -15,21 +15,24 @@ export default function VisionarySection() {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div className="md:w-1/2">
             <img 
-              src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=800" 
-              alt="Professional barber portrait" 
+              src="https://i.imgur.com/U1G781I.jpeg" 
+              alt="Presfades profile" 
               className="w-64 h-64 md:w-80 md:h-80 rounded-full mx-auto object-cover gradient-border" 
               loading="lazy"
             />
           </div>
           <div className="md:w-1/2 text-center md:text-left">
             <h2 className="text-3xl md:text-4xl font-bold text-brand-primary mb-6">
-              THE <span className="gradient-text">VISIONARY</span>
+              THE VISIONARY <span className="gradient-text">BEHIND THE FADE</span>
             </h2>
             <p className="text-brand-secondary text-lg mb-6 leading-relaxed">
-              With over a decade of experience in premium barbering and styling, I specialize in creating transformative experiences that go beyond just a haircut. Every service is tailored to enhance your natural features and boost your confidence.
+              With years of dedication to the craft, Presfades was founded on a passion for precision and a commitment to providing an unparalleled grooming experience.
             </p>
-            <p className="text-brand-secondary text-lg mb-8 leading-relaxed">
-              From precision fades to complete style makeovers, I'm committed to delivering exceptional results that reflect your personality and lifestyle.
+            <p className="text-brand-secondary text-lg mb-6 leading-relaxed">
+              Where artistry meets attention to detail. At Presfades, we've elevated grooming into an art form, designed for those who value craftsmanship and exclusivity.
+            </p>
+            <p className="text-brand-secondary text-lg mb-8 leading-relaxed italic">
+              <strong>Specialties:</strong> Flawless skin fades • Sharp tapers • Expert beard sculpting • Premium grooming services.
             </p>
             <button 
               onClick={bookTransformation} 
