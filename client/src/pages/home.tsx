@@ -3,6 +3,7 @@ import HeroSection from "@/components/hero-section";
 import VisionarySection from "@/components/visionary-section";
 import ServicesSection from "@/components/services-section";
 import GallerySection from "@/components/gallery-section";
+import FAQSection from "@/components/faq-section";
 import ContactSection from "@/components/contact-section";
 import FloatingCTA from "@/components/floating-cta";
 
@@ -14,6 +15,7 @@ export default function Home() {
       <VisionarySection />
       <ServicesSection />
       <GallerySection />
+      <FAQSection />
       <ContactSection />
       <FloatingCTA />
       

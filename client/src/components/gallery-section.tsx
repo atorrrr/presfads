@@ -39,10 +39,10 @@ export default function GallerySection() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-brand-primary mb-6">
-            RECENT <span className="gradient-text">WORK</span>
+            FADE HAIRCUT <span className="gradient-text">GALLERY</span>
           </h2>
           <p className="text-brand-secondary text-lg">
-            Check out our latest transformations and follow us on Instagram
+            See our latest fade haircuts and transformations from our Dallas-Fort Worth barbershop. Follow @presfades on Instagram for daily updates.
           </p>
         </div>
 
