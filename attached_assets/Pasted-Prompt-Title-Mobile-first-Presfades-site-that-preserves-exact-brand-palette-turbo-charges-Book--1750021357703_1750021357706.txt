@@ -1,0 +1,60 @@
+Prompt Title: Mobile-first Presfades site that preserves exact brand palette & turbo-charges “Book” CTA
+
+Prompt Body:
+“Re-build presfades.co as a single-page, mobile-first experience that keeps every design cue—colors, gradients, fonts, copy—but restructures the layout so the booking action is always one tap away.
+
+1 · Brand palette (use these exact hexes / vars)
+
+css
+Copy
+Edit
+:root {
+  --purple: #c600ff;       /* brand accent 1 */
+  --purple-dark: #6400ff;  /* hover / alt accent */
+  --green: #00ff84;        /* brand accent 2 */
+  --bg: #0a0a0d;           /* page background */
+  --text-primary: #e6ccff; /* headings & hi-value text */
+  --text-secondary: #c9c9c9; /* body text */
+  --card-bg: #18181d;      /* service card bg */
+  --gradient: linear-gradient(45deg, var(--purple), var(--green));
+}
+– Preserve the 45° purple→green gradient everywhere it appears (logo text, borders, buttons, icons).
+– Background stays #0a0a0d; card edges inherit gradient border like current site.
+– Text colors: --text-primary for hero & headings, --text-secondary for body.
+
+2 · Typography
+– Keep Google font Poppins (300-700 weights).
+– Same caps-heavy heading style; body 16 px on mobile, 18 px+ on larger screens.
+
+3 · Assets
+– Use the same hero image https://i.imgur.com/cTWczet.jpeg with 60 % dark overlay & subtle purple/green radial glow.
+– Retain circular avatar and Instagram feed.
+
+4 · IA / mobile-first layout
+
+text
+Copy
+Edit
+• Sticky top bar (60 px): brand word-mark left, hamburger right.
+• 100 vh Hero: headline + primary CTA “BOOK YOUR TRANSFORMATION”.
+• Floating pill CTA (full-width at 90 % viewport width, 56 px tall) sticks to bottom on <768 px screens. Uses --gradient fill, white label, medium drop-shadow.
+• Visionary section (stacked on mobile, split flex on ≥768 px).
+• Services grid: single column <600 px, two columns up to 1024 px, then 3+. Each service card keeps gradient border, internal “Book now”.
+• Instagram carousel (SnapWidget iframe or native API).
+• Contact / footer identical copy, but phone & email buttons 48 px tall with gradient icon.
+5 · Interactions
+– All four “Book” touch-points (hero, floating pill, service cards, footer) deep-link to https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/start.
+– Add book_btn GA event on click (keep existing gtag snippet).
+
+6 · Performance & a11y
+– Inline critical CSS (<30 KB), minify rest, preload fonts.
+– Defer SnapWidget & GA.
+– All images loading="lazy"; text contrast AA-compliant.
+
+7 · Deliverables
+– 1 × index.html, 1 × styles.css (variables above), 1 × main.js for menu toggle & analytics hooks.
+– Lighthouse mobile ≥ 90, CLS < 0.1, TTI < 3 s on 4G.”
+
+Success criteria
+Hero CTA or floating pill visible at all scroll positions on phones.
+Tap targets ≥ 48 × 48 px, no horizontal scroll at 320 px width.
