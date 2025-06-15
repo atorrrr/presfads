@@ -26,13 +26,13 @@ export default function VisionarySection() {
               THE VISIONARY <span className="gradient-text">BEHIND THE FADE</span>
             </h2>
             <p className="text-brand-secondary text-lg mb-6 leading-relaxed">
-              With years of dedication to the craft, Presfades was founded on a passion for precision and a commitment to providing an unparalleled grooming experience.
+              With years of dedication to the craft, Presfades was founded on a passion for precision fade haircuts and a commitment to providing an unparalleled grooming experience throughout the Dallas-Fort Worth metroplex.
             </p>
             <p className="text-brand-secondary text-lg mb-6 leading-relaxed">
-              Where artistry meets attention to detail. At Presfades, we've elevated grooming into an art form, designed for those who value craftsmanship and exclusivity.
+              Where artistry meets attention to detail. At Presfades, we've elevated men's grooming into an art form, specializing in fade haircuts that have made us Dallas and Fort Worth's premier barbershop destination.
             </p>
             <p className="text-brand-secondary text-lg mb-8 leading-relaxed italic">
-              <strong>Specialties:</strong> Flawless skin fades • Sharp tapers • Expert beard sculpting • Premium grooming services.
+              <strong>Specialties:</strong> Flawless skin fades • Sharp taper fades • Expert beard sculpting • Premium men's haircuts • Dallas-Fort Worth area service
             </p>
             <button 
               onClick={bookTransformation} 

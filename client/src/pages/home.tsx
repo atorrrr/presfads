@@ -22,7 +22,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto text-center">
           <div className="text-3xl font-bold gradient-text mb-6">PRESFADES</div>
           <p className="text-brand-secondary mb-8">
-            Fort Worth's elite fades, sharp lines & VIP grooming all under one roof.
+            Dallas-Fort Worth's premier barbershop specializing in elite fade haircuts, precision cuts, and expert grooming services. Professional barber serving the DFW metroplex.
           </p>
           <div className="flex justify-center space-x-6 mb-8">
             <a 

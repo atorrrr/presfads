@@ -14,10 +14,10 @@ export default function ContactSection() {
       <div className="max-w-4xl mx-auto text-center">
         <div className="mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-brand-primary mb-6">
-            GET IN <span className="gradient-text">TOUCH</span>
+            BOOK YOUR <span className="gradient-text">FADE</span>
           </h2>
           <p className="text-brand-secondary text-lg max-w-2xl mx-auto">
-            Ready for your transformation? Book your appointment or reach out with any questions.
+            Ready for the best fade haircut in Dallas-Fort Worth? Book your appointment at our Fort Worth barbershop or reach out with any questions about our services.
           </p>
         </div>
 

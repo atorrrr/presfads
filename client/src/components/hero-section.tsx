@@ -13,9 +13,9 @@ export default function HeroSection() {
     <section className="hero-bg h-screen flex items-center justify-center relative mt-[60px]">
       <div className="text-center z-10 px-4 max-w-4xl">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-brand-primary mb-6 leading-tight">
-          FORT WORTH'S ELITE FADES,
-          <span className="gradient-text block">SHARP LINES & VIP GROOMING</span>
-          <span className="text-brand-secondary block text-2xl md:text-3xl lg:text-4xl mt-4">all under one roof.</span>
+          DALLAS-FORT WORTH'S ELITE
+          <span className="gradient-text block">FADE SPECIALISTS</span>
+          <span className="text-brand-secondary block text-2xl md:text-3xl lg:text-4xl mt-4">Precision cuts, sharp lines & VIP grooming</span>
         </h1>
         <button 
           onClick={bookTransformation} 

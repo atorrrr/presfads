@@ -41,10 +41,10 @@ export default function ServicesSection() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold text-brand-primary mb-6">
-            PREMIUM <span className="gradient-text">SERVICES</span>
+            ELITE FADE <span className="gradient-text">SERVICES</span>
           </h2>
           <p className="text-brand-secondary text-lg max-w-2xl mx-auto">
-            Discover our range of professional services designed to elevate your style and confidence
+            Discover our range of professional fade haircuts and grooming services serving Dallas and Fort Worth. Expert barber specializing in skin fades, taper fades, and precision cuts.
           </p>
         </div>
 
