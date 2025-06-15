@@ -50,7 +50,7 @@ export default function GallerySection() {
           <iframe 
             src="https://snapwidget.com/embed/1094605" 
             className="w-full h-96 border-0" 
-            allowtransparency="true" 
+            frameBorder="0"
             scrolling="no" 
             loading="lazy" 
             title="Posts from Instagram"

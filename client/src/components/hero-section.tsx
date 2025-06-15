@@ -13,12 +13,10 @@ export default function HeroSection() {
     <section className="hero-bg h-screen flex items-center justify-center relative mt-[60px]">
       <div className="text-center z-10 px-4 max-w-4xl">
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-brand-primary mb-6 leading-tight">
-          TRANSFORM YOUR
-          <span className="gradient-text block">PRESENCE</span>
+          FORT WORTH'S ELITE FADES,
+          <span className="gradient-text block">SHARP LINES & VIP GROOMING</span>
+          <span className="text-brand-secondary block text-2xl md:text-3xl lg:text-4xl mt-4">all under one roof.</span>
         </h1>
-        <p className="text-lg md:text-xl text-brand-secondary mb-8 max-w-2xl mx-auto">
-          Premium barbering and styling services that elevate your confidence and presence. Experience the difference of precision cuts and personalized service.
-        </p>
         <button 
           onClick={bookTransformation} 
           className="btn-gradient text-white px-8 py-4 md:px-12 md:py-5 rounded-full font-bold text-lg md:text-xl shadow-2xl min-h-[48px] min-w-[48px]"
