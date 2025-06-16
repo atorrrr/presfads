@@ -77,6 +77,7 @@ export default function ContactSection() {
 
         <div className="text-center">
           <button 
+            type="button"
             onClick={bookTransformation} 
             className="btn-gradient text-white px-12 py-5 rounded-full font-bold text-xl shadow-2xl min-h-[48px] min-w-[48px]"
           >

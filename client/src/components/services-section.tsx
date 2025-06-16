@@ -66,6 +66,7 @@ export default function ServicesSection() {
               <p className="text-2xl font-bold gradient-text mb-2">{service.price}</p>
               <p className="text-sm text-brand-secondary mb-6">{service.duration}</p>
               <button 
+                type="button"
                 onClick={bookTransformation} 
                 className="btn-gradient text-white px-6 py-3 rounded-full font-semibold w-full min-h-[48px]"
               >
