@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Button Functionality</title>
+</head>
+<body>
+    <h1>Test Page</h1>
+    
+    <h2>Booking Button Test</h2>
+    <button type="button" onclick="testBooking()">Test Book Now</button>
+    
+    <h2>Contact Links Test</h2>
+    <a href="tel:4699010585">Phone: (469) 901-0585</a><br>
+    <a href="mailto:presfades@gmail.com">Email: presfades@gmail.com</a><br>
+    <a href="https://maps.google.com/?q=6700+Silver+Sage+Dr,+Fort+Worth,+TX+76137">Address: 6700 Silver Sage Dr, Fort Worth, TX</a>
+    
+    <script>
+        function testBooking() {
+            console.log('Button clicked - opening Square booking');
+            window.open('https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/start', '_blank');
+        }
+    </script>
+</body>
+</html>

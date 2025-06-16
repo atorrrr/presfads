@@ -57,6 +57,7 @@ export default function FloatingCTA() {
 
   return (
     <button 
+      type="button"
       onClick={bookTransformation} 
       className="floating-cta flex items-center justify-center text-white font-bold text-lg"
       style={{ display: isVisible ? 'flex' : 'none' }}

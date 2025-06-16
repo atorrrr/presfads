@@ -38,6 +38,7 @@ export default function VisionarySection() {
               <strong>Specialties:</strong> Flawless skin fades • Sharp taper fades • Expert beard sculpting • Premium men's haircuts • Dallas-Fort Worth area service
             </p>
             <button 
+              type="button"
               onClick={bookTransformation} 
               className="btn-gradient text-white px-8 py-4 rounded-full font-semibold min-h-[48px] min-w-[48px]"
             >

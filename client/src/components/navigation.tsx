@@ -71,30 +71,35 @@ export default function Navigation() {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <button 
+              type="button"
               onClick={() => scrollToSection('services')} 
               className="text-brand-secondary hover:text-brand-primary transition-colors"
             >
               Services
             </button>
             <button 
+              type="button"
               onClick={() => scrollToSection('about')} 
               className="text-brand-secondary hover:text-brand-primary transition-colors"
             >
               About
             </button>
             <button 
+              type="button"
               onClick={() => scrollToSection('gallery')} 
               className="text-brand-secondary hover:text-brand-primary transition-colors"
             >
               Gallery
             </button>
             <button 
+              type="button"
               onClick={() => scrollToSection('contact')} 
               className="text-brand-secondary hover:text-brand-primary transition-colors"
             >
               Contact
             </button>
             <button 
+              type="button"
               onClick={bookTransformation} 
               className="btn-gradient text-white px-6 py-3 rounded-full font-semibold"
             >
@@ -108,30 +113,35 @@ export default function Navigation() {
       <div className={`mobile-menu fixed top-0 right-0 w-full h-full bg-brand-bg z-40 md:hidden ${isMobileMenuOpen ? 'open' : ''}`}>
         <div className="flex flex-col items-center justify-center h-full space-y-8">
           <button 
+            type="button"
             onClick={() => scrollToSection('services')} 
             className="text-2xl text-brand-primary font-semibold"
           >
             Services
           </button>
           <button 
+            type="button"
             onClick={() => scrollToSection('about')} 
             className="text-2xl text-brand-primary font-semibold"
           >
             About
           </button>
           <button 
+            type="button"
             onClick={() => scrollToSection('gallery')} 
             className="text-2xl text-brand-primary font-semibold"
           >
             Gallery
           </button>
           <button 
+            type="button"
             onClick={() => scrollToSection('contact')} 
             className="text-2xl text-brand-primary font-semibold"
           >
             Contact
           </button>
           <button 
+            type="button"
             onClick={bookTransformation} 
             className="btn-gradient text-white px-8 py-4 rounded-full font-semibold text-lg"
           >
