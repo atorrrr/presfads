@@ -109,6 +109,7 @@
     background: var(--gradient);
     box-shadow: 0 8px 32px rgba(198, 0, 255, 0.4);
     transition: all 0.3s ease;
+    cursor: pointer;
   }
 
   .floating-cta:hover {
@@ -128,6 +129,7 @@
   .btn-gradient {
     background: var(--gradient);
     transition: all 0.3s ease;
+    cursor: pointer;
   }
 
   .btn-gradient:hover {
@@ -168,6 +170,15 @@
 
   .bg-brand-card {
     background-color: var(--card-bg);
+  }
+
+  /* Ensure all buttons and links have pointer cursor */
+  button, a, .btn-gradient, .floating-cta {
+    cursor: pointer !important;
+  }
+
+  button:hover, a:hover, .btn-gradient:hover, .floating-cta:hover {
+    cursor: pointer !important;
   }
 }
 
