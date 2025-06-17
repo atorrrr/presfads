@@ -107,7 +107,7 @@ export default function Navigation({ onOpenLeadModal }: NavigationProps) {
               onClick={onOpenLeadModal} 
               className="text-brand-secondary hover:text-brand-primary transition-colors mr-4"
             >
-              VIP List
+              Free Guide
             </button>
             <button 
               type="button"
@@ -156,7 +156,7 @@ export default function Navigation({ onOpenLeadModal }: NavigationProps) {
             onClick={onOpenLeadModal} 
             className="text-2xl text-brand-primary font-semibold mb-6"
           >
-            VIP List
+            Free Guide
           </button>
           <button 
             type="button"

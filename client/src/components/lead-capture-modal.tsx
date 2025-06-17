@@ -25,11 +25,11 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
     setIsSuccess(true);
     setIsSubmitting(false);
     
-    // Track lead capture event
+    // Track consultation guide download event
     if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'lead_capture', {
-        event_category: 'engagement',
-        event_label: 'contact_form'
+      window.gtag('event', 'consultation_guide_request', {
+        event_category: 'lead_generation',
+        event_label: 'consultation_guide'
       });
     }
 
@@ -74,10 +74,10 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
             {/* Header */}
             <div className="text-center mb-8">
               <h2 className="text-2xl md:text-3xl font-bold text-brand-primary mb-4">
-                GET YOUR <span className="gradient-text">VIP SPOT</span>
+                FREE <span className="gradient-text">CONSULTATION GUIDE</span>
               </h2>
               <p className="text-brand-secondary">
-                Join our exclusive list for priority booking, special offers, and style updates from Dallas-Fort Worth's premier fade specialists.
+                Get our exclusive consultation checklist emailed to you instantly. Discover how to achieve the perfect fade and what questions to ask your barber for guaranteed results.
               </p>
             </div>
 
@@ -135,12 +135,12 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
                 disabled={isSubmitting}
                 className="w-full btn-gradient text-white py-4 rounded-lg font-bold text-lg disabled:opacity-50 disabled:cursor-not-allowed transition-all min-h-[48px]"
               >
-                {isSubmitting ? "SECURING YOUR SPOT..." : "GET VIP ACCESS"}
+                {isSubmitting ? "SENDING YOUR GUIDE..." : "GET FREE CONSULTATION GUIDE"}
               </button>
             </form>
 
             <p className="text-center text-brand-secondary text-sm mt-6">
-              We respect your privacy. Unsubscribe anytime.
+              📧 Your consultation guide will be emailed instantly. We respect your privacy and never spam.
             </p>
           </>
         ) : (
@@ -152,10 +152,10 @@ export default function LeadCaptureModal({ isOpen, onClose }: LeadCaptureModalPr
               </svg>
             </div>
             <h3 className="text-2xl font-bold text-brand-primary mb-4">
-              WELCOME TO THE <span className="gradient-text">VIP LIST!</span>
+              CHECK YOUR <span className="gradient-text">EMAIL!</span>
             </h3>
             <p className="text-brand-secondary">
-              You're all set! We'll be in touch with exclusive offers and priority booking access.
+              Your consultation guide is on its way! Check your inbox for expert tips on achieving the perfect fade.
             </p>
           </div>
         )}
