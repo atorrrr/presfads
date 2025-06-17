@@ -5,17 +5,22 @@ import ServicesSection from "@/components/services-section";
 import GallerySection from "@/components/gallery-section";
 import ContactSection from "@/components/contact-section";
 import FloatingCTA from "@/components/floating-cta";
+import LeadCaptureModal from "@/components/lead-capture-modal";
+import { useLeadCapture } from "@/hooks/use-lead-capture";
 
 export default function Home() {
+  const { isModalOpen, openModal, closeModal } = useLeadCapture();
+
   return (
     <div className="min-h-screen bg-brand-bg">
-      <Navigation />
+      <Navigation onOpenLeadModal={openModal} />
       <HeroSection />
       <VisionarySection />
       <ServicesSection />
       <GallerySection />
       <ContactSection />
       <FloatingCTA />
+      <LeadCaptureModal isOpen={isModalOpen} onClose={closeModal} />
       
       {/* Footer */}
       <footer className="border-t border-purple-500/20 py-12 px-4">

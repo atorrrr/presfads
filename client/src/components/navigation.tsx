@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
-export default function Navigation() {
+interface NavigationProps {
+  onOpenLeadModal?: () => void;
+}
+
+export default function Navigation({ onOpenLeadModal }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
@@ -100,6 +104,13 @@ export default function Navigation() {
             </button>
             <button 
               type="button"
+              onClick={onOpenLeadModal} 
+              className="text-brand-secondary hover:text-brand-primary transition-colors mr-4"
+            >
+              VIP List
+            </button>
+            <button 
+              type="button"
               onClick={bookTransformation} 
               className="btn-gradient text-white px-6 py-3 rounded-full font-semibold"
             >
@@ -139,6 +150,13 @@ export default function Navigation() {
             className="text-2xl text-brand-primary font-semibold"
           >
             Contact
+          </button>
+          <button 
+            type="button"
+            onClick={onOpenLeadModal} 
+            className="text-2xl text-brand-primary font-semibold mb-6"
+          >
+            VIP List
           </button>
           <button 
             type="button"

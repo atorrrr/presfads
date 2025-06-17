@@ -180,6 +180,29 @@
   button:hover, a:hover, .btn-gradient:hover, .floating-cta:hover {
     cursor: pointer !important;
   }
+
+  /* Modal backdrop blur effect */
+  .modal-backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  /* Form input focus styles */
+  input:focus {
+    box-shadow: 0 0 0 2px rgba(198, 0, 255, 0.3);
+  }
+
+  /* Modal animation */
+  .modal-enter {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  .modal-enter-active {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms, transform 300ms;
+  }
 }
 
 @media (min-width: 768px) {
