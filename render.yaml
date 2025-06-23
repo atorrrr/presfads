@@ -1,12 +1,9 @@
 services:
   - type: web
-    name: presfads-fullstack
+    name: presfades-website
     env: node
-    rootDir: server              # where your Express code lives
-    buildCommand: |
-      pnpm install --frozen-lockfile
-      pnpm --filter client build          # build the Vite frontend
-    startCommand: pnpm start              # your "node index.js" or similar
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     envVars:
-      - key: NODE_VERSION
-        value: 20
+      - key: NODE_ENV
+        value: production
