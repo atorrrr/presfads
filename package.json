@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "htmlhint index.html pp.html"
+    "test": "htmlhint index.html pp.html",
+    "start": "NODE_ENV=production node dist/index.js"
   },
   "devDependencies": {
     "htmlhint": "^0.16.1"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }
