@@ -7,6 +7,8 @@ import { useEffect } from "react";
 import { initGA } from "./lib/analytics";
 import { useAnalytics } from "./hooks/use-analytics";
 import Home from "@/pages/home";
+import Booking from "@/pages/booking";
+import BookingSuccess from "@/pages/booking-success";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -16,6 +18,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/booking" component={Booking} />
+      <Route path="/booking-success" component={BookingSuccess} />
       <Route component={NotFound} />
     </Switch>
   );
