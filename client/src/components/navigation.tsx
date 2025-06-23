@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 
 interface NavigationProps {
   onOpenLeadModal?: () => void;
@@ -6,6 +7,7 @@ interface NavigationProps {
 
 export default function Navigation({ onOpenLeadModal }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [, setLocation] = useLocation();
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -32,12 +34,12 @@ export default function Navigation({ onOpenLeadModal }: NavigationProps) {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'click', {
         event_category: 'engagement',
-        event_label: 'book_btn'
+        event_label: 'book_btn_nav'
       });
     }
     
-    // Redirect to Square booking
-    window.open('https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/start', '_blank');
+    // Redirect to custom booking page
+    setLocation('/booking');
   };
 
   useEffect(() => {

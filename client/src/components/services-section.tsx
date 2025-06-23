@@ -1,3 +1,5 @@
+import { useLocation } from "wouter";
+
 const services = [
   {
     title: "HAIRCUT",
@@ -24,8 +26,6 @@ const services = [
     duration: "Add-on Service"
   }
 ];
-
-import { useLocation } from "wouter";
 
 export default function ServicesSection() {
   const [, setLocation] = useLocation();

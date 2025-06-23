@@ -57,14 +57,15 @@ export default function Booking() {
 
       {/* Square Booking Embed */}
       <div className="max-w-4xl mx-auto px-4">
-        <div className="gradient-border rounded-2xl overflow-hidden">
+        <div className="gradient-border rounded-2xl overflow-hidden bg-brand-card">
           <iframe
             src="https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/embed"
             width="100%"
-            height="800"
+            height="700"
             style={{
               border: 'none',
-              borderRadius: '16px'
+              borderRadius: '16px',
+              backgroundColor: 'transparent'
             }}
             title="Book Appointment with PRESFADES"
             onLoad={() => {
