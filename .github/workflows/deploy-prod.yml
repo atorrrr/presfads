@@ -16,10 +16,10 @@ jobs:
             service: ${{ secrets.RENDER_SERVICE_ID_PROD }}
     if: github.ref_name == matrix.branch
     steps:
-     - name: Trigger Render deploy
+      - name: Trigger Render deploy
         run: |
           curl -X POST \
                -H "Authorization: Bearer ${{ secrets.RENDER_TOKEN }}" \
                -H "Accept: application/json" \
-               -d '' \
+              ' -d '' \
                https://api.render.com/v1/services/${{ matrix.service }}/deploys
