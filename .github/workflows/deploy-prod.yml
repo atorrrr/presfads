@@ -1,25 +1,25 @@
 name: Deploy (Staging & Prod)
-
 on:
   push:
-    branches: [ main-mobile, prod ]
-
+    branches: [main-mobile, prod]       # add main-mobile-dev if needed
 jobs:
   deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         include:
-          - branch: main-mobile
-            service: ${{ secrets.RENDER_SERVICE_ID_STG }}
-          - branch: prod
-            service: ${{ secrets.RENDER_SERVICE_ID_PROD }}
-    if: github.ref_name == matrix.branch
+          - branch: main-mobile          # staging
+            service_secret: RENDER_SERVICE_ID_STG
+          - branch: prod                 # production
+            service_secret: RENDER_SERVICE_ID_PROD
+
     steps:
       - name: Trigger Render deploy
+        env:
+          SERVICE_ID: ${{ secrets[matrix.service_secret] }}
         run: |
           curl -X POST \
                -H "Authorization: Bearer ${{ secrets.RENDER_TOKEN }}" \
                -H "Accept: application/json" \
-        -d '' \
-               https://api.render.com/v1/services/${{ matrix.service }}/deploys
+               -d '{}' \
+               https://api.render.com/v1/services/${SERVICE_ID}/deploys
