@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [ main-mobile, main-mobile-dev ]
+  pull_request:
+    branches: [ main-mobile, main-mobile-dev ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run build
