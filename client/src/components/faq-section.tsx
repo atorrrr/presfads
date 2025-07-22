@@ -11,7 +11,7 @@ const faqs = [
   },
   {
     question: "How much do fade haircuts cost?",
-    answer: "Our haircuts start at $60 for precision cuts and fades. Haircut and beard trim combinations are $75. We also offer after-hours services for $100+ and eyebrow shaping add-ons for $5. All services include expert consultation and styling."
+    answer: "Our haircuts start at $75 for precision cuts and fades. Haircut and beard trim combinations are $90. We also offer after-hours services for $125+ and eyebrow shaping add-ons for $10. All services include expert consultation and styling."
   },
   {
     question: "How do I book an appointment?",
