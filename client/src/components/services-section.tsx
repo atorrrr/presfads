@@ -2,25 +2,25 @@ const services = [
   {
     title: "HAIRCUT",
     description: "Precision haircut tailored to your style, finished with a sharp line-up.",
-    price: "$60",
+    price: "$75",
     duration: "Approx. 1 hour"
   },
   {
     title: "HAIRCUT & BEARD TRIM", 
     description: "Complete grooming: precision cut paired with expert beard shaping & line-up.",
-    price: "$75",
+    price: "$90",
     duration: "Approx. 1 hour"
   },
   {
     title: "AFTER HOURS SERVICE",
     description: "Premium service outside regular hours. Contact for availability before booking.",
-    price: "$100+",
+    price: "$125+",
     duration: "Approx. 1 hour"
   },
   {
     title: "EYEBROW SHAPING",
     description: "Clean up and define your brows with razor/trim. (Add-on to any service).",
-    price: "$5",
+    price: "$10",
     duration: "Add-on Service"
   }
 ];
