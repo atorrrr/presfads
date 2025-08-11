@@ -18,7 +18,7 @@ export default function HeroSection() {
         <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-brand-primary mb-6 leading-tight">
           DALLAS-FORT WORTH'S ELITE
           <span className="gradient-text block">FADE SPECIALISTS</span>
-          <span className="text-brand-secondary block text-2xl md:text-3xl lg:text-4xl mt-4">Precision cuts, sharp lines & VIP grooming ✨</span>
+          <span className="text-brand-secondary block text-2xl md:text-3xl lg:text-4xl mt-4">Precision cuts, sharp lines & VIP grooming ✨🔥</span>
         </h1>
         <button 
           onClick={bookTransformation} 
