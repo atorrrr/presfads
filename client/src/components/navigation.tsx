@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 
-export default function Navigation() {
+interface NavigationProps {
+  onOpenLeadModal?: () => void;
+}
+
+export default function Navigation({ onOpenLeadModal }: NavigationProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
