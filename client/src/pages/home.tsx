@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-brand-bg">
       <Navigation onOpenLeadModal={openModal} />
-      <HeroSection />
+      <HeroSection onOpenLeadModal={openModal} />
       <VisionarySection />
       <ServicesSection />
       <GallerySection />

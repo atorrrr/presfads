@@ -73,7 +73,7 @@ export default function Navigation({ onOpenLeadModal }: NavigationProps) {
           </button>
           
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <button 
               onClick={() => scrollToSection('services')} 
               className="text-brand-secondary hover:text-brand-primary transition-colors"
@@ -97,6 +97,12 @@ export default function Navigation({ onOpenLeadModal }: NavigationProps) {
               className="text-brand-secondary hover:text-brand-primary transition-colors"
             >
               Contact
+            </button>
+            <button 
+              onClick={onOpenLeadModal} 
+              className="text-brand-secondary hover:gradient-text transition-colors border border-purple-500/30 px-3 py-2 rounded-lg hover:border-purple-500/60"
+            >
+              Free Guide
             </button>
             <button 
               onClick={bookTransformation} 
@@ -134,6 +140,15 @@ export default function Navigation({ onOpenLeadModal }: NavigationProps) {
             className="text-2xl text-brand-primary font-semibold"
           >
             Contact
+          </button>
+          <button 
+            onClick={() => {
+              onOpenLeadModal?.();
+              closeMobileMenu();
+            }} 
+            className="text-xl gradient-text font-semibold border border-purple-500/30 px-6 py-3 rounded-lg"
+          >
+            Free Consultation Guide
           </button>
           <button 
             onClick={bookTransformation} 
