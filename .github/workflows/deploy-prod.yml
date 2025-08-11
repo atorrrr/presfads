@@ -17,19 +17,14 @@ jobs:
         with:
           node-version: '20'
           
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 8
-          
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: npm ci
         
       - name: Run type checking
-        run: pnpm run check
+        run: npm run check
         
       - name: Build application
-        run: pnpm run build
+        run: npm run build
         
       - name: Run production tests
         run: |
