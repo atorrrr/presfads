@@ -1,156 +1,177 @@
-# Presfades Premium Barbershop - Design Guidelines
+# Presfades Premium Barbershop Design Guidelines
 
 ## Design Approach
+**Reference-Based Luxury Service** - Drawing inspiration from premium lifestyle brands (Rolex, Saint Laurent, luxury automotive) combined with urban culture aesthetics (streetwear, hip-hop culture). This creates an exclusive yet culturally authentic experience that positions Presfades as the pinnacle of fade artistry.
 
-**Reference-Based Luxury Urban Aesthetic** drawing from:
-- **Rolex**: Timeless elegance, gold accents, black sophistication, meticulous attention to detail
-- **Saint Laurent**: Bold typography, high-contrast imagery, urban edge meets luxury
-- **Barber Culture**: Authentic street credibility, craftsmanship pride, community respect
-
-**Core Philosophy**: Create an elite experience that balances opulence with authenticity—where luxury doesn't sacrifice urban roots.
+**Core Principles:**
+- Luxury through restraint and precision
+- Urban authenticity meets high-end refinement  
+- Exclusivity without pretension
+- Craftsmanship as the hero
 
 ---
 
 ## Color Palette
 
-**Primary Colors**:
-- **Premium Gold**: 45 75% 52% (brand accent, CTAs, highlights)
-- **Deep Black**: 0 0% 8% (primary background)
-- **Rich Charcoal**: 0 0% 15% (cards, sections)
+### Primary Colors
+**Dark Mode Foundation (primary scheme):**
+- **Deep Black:** 0 0% 8% - Main backgrounds, premium depth
+- **Pure Black:** 0 0% 0% - Accents, borders, depth layers
+- **Rich Gold:** 45 90% 55% - Primary brand color, CTAs, highlights
+- **Metallic Gold:** 42 85% 65% - Hover states, metallic sheen effects
 
-**Supporting**:
-- **Soft White**: 0 0% 95% (body text)
-- **Warm Gray**: 0 0% 65% (secondary text)
-- **Accent Black**: 0 0% 5% (overlays, depth)
+### Supporting Colors
+- **Warm Gray:** 30 5% 25% - Secondary backgrounds, cards
+- **Light Gray:** 0 0% 85% - Body text on dark
+- **Soft White:** 0 0% 98% - Headers, primary text
+- **Muted Gold:** 45 60% 45% - Subtle accents, borders
 
-**Usage Strategy**: Black dominates (80%), gold used strategically (10-15%) for premium accents, not overwhelming. White text for maximum luxury contrast.
+### Accent (Minimal Use)
+- **Deep Burgundy:** 0 40% 25% - Premium depth, luxury touches
 
 ---
 
 ## Typography
 
-**Headlines**: Playfair Display (serif)
-- Hero: text-6xl/text-7xl, font-bold, tracking-tight
-- Section headers: text-4xl/text-5xl, font-semibold
-- Card titles: text-2xl, font-medium
+### Font Families
+**Display/Headers:** Playfair Display (or similar high-contrast serif) - for luxury headlines
+**Body/UI:** Inter or Outfit - clean, modern sans-serif for readability
 
-**Body & UI**: Inter (sans-serif)
-- Body text: text-base/text-lg, font-normal, leading-relaxed
-- Buttons/CTAs: text-sm/text-base, font-semibold, uppercase tracking-wide
-- Captions: text-sm, font-light
-
-**Hierarchy**: Large serif headlines create drama, clean sans-serif maintains readability and modern edge.
+### Hierarchy
+- **Hero Headline:** 4xl to 6xl, font-bold, tracking-tight, Playfair Display
+- **Section Headers:** 3xl to 4xl, font-bold, Inter/Outfit
+- **Service Titles:** xl to 2xl, font-semibold
+- **Body Text:** base to lg, font-normal, leading-relaxed
+- **Pricing:** 2xl to 3xl, font-bold, gold color
 
 ---
 
 ## Layout System
 
-**Spacing Primitives**: Use Tailwind units of 4, 6, 8, 12, 16, 20, 24 for consistent rhythm.
+**Spacing Primitives:** Tailwind units of 4, 6, 8, 12, 16, 20, 24 for consistent rhythm
 
-**Section Structure**:
-- Mobile: py-12, px-6
-- Desktop: py-20/py-24, px-8 with max-w-7xl containers
-- Hero: min-h-[85vh] (not forced 100vh)
+**Container Strategy:**
+- Max-width: 7xl for full sections
+- Max-width: 5xl for content-focused areas
+- Full-bleed for hero and gallery sections
 
-**Grid Philosophy**: 
-- Single column mobile throughout
-- Desktop: 2-column for services/pricing, 3-column for gallery, 2-column for testimonials
-- Asymmetric layouts where appropriate for visual interest
+**Grid Systems:**
+- Services: 3-column grid (desktop), single column (mobile)
+- Gallery: Masonry or 3-4 column grid
+- Features: 2-column split layouts
 
 ---
 
 ## Component Library
 
 ### Navigation
-**Desktop**: Fixed top, backdrop-blur-md with bg-black/80, logo left, menu center (Services, Gallery, About, Contact), gold "Book Now" button right
-**Mobile**: Hamburger menu, full-screen overlay with large Playfair Display links, gold accent lines
+- Fixed header with subtle backdrop blur on scroll
+- Black background (0 0% 8%) with gold logo accent
+- Gold underline on active/hover states
+- "BOOK NOW" button in gold with high contrast
 
 ### Hero Section
-- Full-width background image (fade work/shop interior)
-- Dark gradient overlay (from black/70 to black/40)
-- Centered content: Playfair Display headline, Inter subheading, dual CTA (primary gold button + outline white button with blur backdrop)
-- Social proof badge: "Dallas-Fort Worth's #1 Fade Specialist" with gold star accent
+**Layout:** Full-viewport (90vh) dramatic hero with overlay
+- Large hero image showing premium barbershop environment or transformation result
+- Dark gradient overlay (black to transparent) for text legibility
+- Centered headline: "DALLAS-FORT WORTH'S ELITE FADE SPECIALISTS"
+- Subheadline emphasizing exclusivity: "Premium Grooming for the Discerning Client"
+- Primary CTA: Gold button "RESERVE YOUR TRANSFORMATION"
+- Trust indicator: "VIP Service • Master Craftsmanship • Limited Availability"
 
 ### Service Cards
-- Charcoal background cards (hover: subtle gold border glow)
-- Service icon/image top, Playfair title, Inter description, gold price accent
-- 3-column desktop grid, stacked mobile
-- Services: Signature Fade, Beard Sculpting, VIP Experience, Hot Towel Shave
+- Dark card backgrounds (30 5% 25%) with subtle gold borders (1px)
+- Service name in white, bold
+- Pricing in large gold typography (2xl, bold)
+- Elegant hover effect: subtle gold glow, slight elevation
+- "Book Service" buttons with gold background
 
-### Gallery/Portfolio
-- Masonry grid showcasing before/after transformations
-- Full-bleed images with subtle hover overlay revealing client testimonial snippet
-- "View Full Portfolio" gold CTA at section end
+### Gallery Section
+**Layout:** Masonry grid showcasing before/after transformations
+- 3-4 columns on desktop, 2 on tablet, 1 on mobile
+- Images with thin gold border on hover
+- Lightbox interaction for full-view
+- Instagram integration with "Follow for Daily Transformations"
 
-### Testimonials
-- 2-column card layout with client photo, quote in Playfair italic, name/social handle in Inter
-- Gold quote marks as decorative elements
-- Rotating selection of 4-6 testimonials
+### About/Story Section
+- Two-column layout: Image left, content right
+- Premium styling: large serif quote or pull text in gold
+- Emphasize "Master Fade Specialist," "10+ Years Mastery," "Exclusive Clientele"
 
-### Booking CTA Section
-- Full-width black section with gold accent border top
-- Large Playfair headline: "Reserve Your Premium Experience"
-- Availability indicators, prominent gold button
-- Trust elements: "72hr cancellation policy", "VIP lounge access"
+### Booking Section
+**Premium Contact Experience:**
+- Split layout: Form on left, location/contact info on right
+- Gold accent lines and borders
+- Elevated form styling with dark inputs and gold focus states
+- Embedded map with custom gold pin marker
+- Premium language: "Secure Your Appointment" not just "Book"
 
 ### Footer
-- 3-column desktop: Brand info + social, Quick links, Hours/Contact
-- Newsletter signup with gold accent input border
-- Social icons with gold hover states
-- Copyright in warm gray
+- Rich black background
+- Three columns: Quick Links, Contact, Social
+- Gold divider lines
+- Minimal social icons in gold
+- Copyright in muted gray
 
 ---
 
-## Images
+## Visual Treatments
 
-### Required Images:
-1. **Hero**: Premium shot of barber perfecting a fade (over-the-shoulder, focused on craft) - full-width, 1920x1080
-2. **About Section**: Owner portrait with barbershop backdrop - 600x800, left-aligned
-3. **Gallery**: 9-12 high-quality before/after fade shots - square format, 800x800 each
-4. **Service Cards**: 4 close-up detail shots (clippers, beard trim, hot towel, finished fade) - 400x300 each
-5. **Testimonials**: 4-6 client headshots - circular crop, 150x150
-6. **Shop Ambiance**: Interior shot showing VIP chairs, mirrors, premium atmosphere - 1200x600
+### Buttons
+**Primary (Gold):** Solid gold background (45 90% 55%), black text, subtle shadow
+**Secondary (Outline):** Gold border, gold text, transparent background with blur on images
+**Hover:** Slight brightness increase, no complex animations
 
-**Image Treatment**: Maintain high contrast, slightly desaturated for sophistication, subtle vignettes to draw focus.
+### Images
+**Hero:** Professional barbershop interior or dramatic transformation shot - full-bleed, high-quality
+**Gallery:** Client transformations, fade close-ups, before/after comparisons
+**About:** Professional portrait of the barber/founder
+**Aesthetic:** High-contrast, sharp focus, moody lighting, urban-luxury vibe
 
----
+### Borders & Dividers
+- Thin gold accent lines (1px) for separation
+- Subtle gold gradients for premium feel
+- Never harsh lines - always refined
 
-## Interaction & Animation
-
-**Minimal Motion Philosophy**: Luxury feels confident, not flashy.
-
-- **Hover states**: Subtle gold border glow (transition-all duration-300)
-- **Scroll**: Gentle fade-in for sections (opacity + slight translateY)
-- **Buttons**: Scale(1.02) on hover, no aggressive animations
-- **Gallery**: Smooth overlay transitions on hover
-- **Navigation**: Smooth backdrop blur on scroll
-
-**NO**: Parallax, spinning elements, excessive transitions, carousel auto-play
+### Shadows & Depth
+- Subtle elevation on cards: shadow-lg with warm tones
+- Gold glow effects on hover (box-shadow with gold color at 20% opacity)
+- Layered depth through overlapping sections
 
 ---
 
-## Page Structure (Comprehensive Sections)
-
-1. **Navigation** (sticky)
-2. **Hero** (85vh with image)
-3. **Value Proposition** (centered statement, 3-stat grid: Years Experience, Clients Served, 5-Star Reviews)
-4. **Signature Services** (4-card grid)
-5. **Master Craftsman** (about section, 2-column: owner story + image)
-6. **Portfolio Gallery** (masonry before/afters)
-7. **Client Testimonials** (2-column cards)
-8. **VIP Booking CTA** (full-width accent section)
-9. **Location & Hours** (2-column: map embed + info)
-10. **Footer** (comprehensive 3-column)
+## Animations
+**Minimal & Purposeful:**
+- Smooth fade-ins on scroll for sections (duration-700)
+- Subtle hover elevations (translate-y-1)
+- Gold glow transitions on CTAs
+- NO distracting scroll animations or excessive movement
 
 ---
 
-## Mobile-First Responsive Strategy
+## Responsive Behavior
+- Hero: Full-viewport on desktop, 70vh on mobile
+- Services: 3-column → 1-column stack
+- Typography: Scale down by 25-30% on mobile
+- Maintain gold/black contrast across all breakpoints
+- Ensure touch targets 44px minimum
 
-- All multi-column layouts collapse to single column
-- Navigation becomes hamburger overlay
-- Hero maintains impact at reduced height (70vh mobile)
-- Typography scales: hero from text-4xl mobile to text-7xl desktop
-- Touch-friendly targets: min 44px height for all interactive elements
-- Generous mobile padding: px-6 vs px-8 desktop
+---
 
-**Accessibility**: High contrast maintained, all buttons include focus states with gold outline, semantic HTML structure, image alt text describing craft/results.
+## Brand Voice Through Design
+**Exclusivity Indicators:**
+- "Limited availability" messaging
+- "By appointment only" emphasis  
+- Premium pricing display with confidence
+- "VIP Experience" language throughout
+- Subtle scarcity cues without being aggressive
+
+**Urban Authenticity:**
+- Bold, confident typography
+- Sharp, precise design elements (like the fades themselves)
+- Cultural credibility through imagery and tone
+- Street-meets-luxury aesthetic balance
+
+---
+
+This design positions Presfades as the undisputed premium fade destination in DFW - exclusive, masterful, and unapologetically high-end while staying rooted in urban culture authenticity.

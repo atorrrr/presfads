@@ -1,103 +1,112 @@
-import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
+import { Scissors, Instagram, Phone, Mail } from "lucide-react";
 
 export function Footer() {
+  const currentYear = new Date().getFullYear();
+
+  const quickLinks = [
+    { label: "Home", id: "hero" },
+    { label: "About", id: "about" },
+    { label: "Services", id: "services" },
+    { label: "Gallery", id: "gallery" },
+    { label: "Contact", id: "contact" },
+  ];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <footer className="bg-secondary/50 border-t border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          <div className="space-y-4" data-testid="section-footer-brand">
-            <div className="flex items-center gap-2">
-              <span className="text-2xl font-serif font-bold text-foreground" data-testid="text-footer-logo">
-                Pres<span className="text-primary">fades</span>
-              </span>
-            </div>
-            <p className="text-foreground/70 text-sm leading-relaxed" data-testid="text-footer-tagline">
-              Dallas-Fort Worth's premier destination for elite fade haircuts and VIP grooming experiences. Master craftsmanship meets precision.
-            </p>
-            <div className="flex items-center gap-4 pt-2">
-              <a
-                href="https://www.instagram.com/presfades/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-md bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-colors"
-                data-testid="link-footer-instagram"
-                aria-label="Follow us on Instagram"
-              >
-                <Instagram className="h-5 w-5 text-primary" />
-              </a>
-              <a
-                href="https://www.facebook.com/share/1Z2pc57rmt/?mibextid=wwXIfr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-md bg-primary/10 hover:bg-primary/20 border border-primary/20 transition-colors"
-                data-testid="link-footer-facebook"
-                aria-label="Follow us on Facebook"
-              >
-                <Facebook className="h-5 w-5 text-primary" />
-              </a>
-            </div>
-          </div>
-
-          <div className="space-y-4" data-testid="section-footer-contact">
-            <h3 className="font-serif font-bold text-lg text-foreground" data-testid="heading-footer-contact">
-              Contact
-            </h3>
-            <div className="space-y-3 text-sm">
-              <div className="flex items-start gap-3" data-testid="item-footer-address">
-                <MapPin className="h-4 w-4 text-primary mt-0.5 flex-shrink-0" />
-                <p className="text-foreground/70" data-testid="text-footer-address">
-                  6700 Silver Sage Dr
-                  <br />
-                  Fort Worth, TX 76137
-                </p>
+    <footer className="bg-black border-t border-primary/20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-12 mb-12">
+            <div className="space-y-6">
+              <div className="flex items-center gap-2" data-testid="logo-footer">
+                <Scissors className="h-8 w-8 text-primary" />
+                <span className="text-2xl font-serif font-bold text-foreground">
+                  Pres<span className="text-primary">fades</span>
+                </span>
               </div>
-              <div className="flex items-center gap-3" data-testid="item-footer-phone">
-                <Phone className="h-4 w-4 text-primary flex-shrink-0" />
+              <p className="text-foreground/70 leading-relaxed" data-testid="text-footer-description">
+                Dallas-Fort Worth's elite fade specialist. Precision cuts, sharp lines & VIP grooming experience.
+              </p>
+              <div className="flex items-center gap-4">
                 <a
-                  href="tel:+14699010585"
-                  className="text-foreground/70 hover:text-primary transition-colors"
-                  data-testid="link-footer-phone"
+                  href="https://www.instagram.com/presfades/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-md bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-colors"
+                  data-testid="link-instagram-footer"
                 >
-                  (469) 901-0585
-                </a>
-              </div>
-              <div className="flex items-center gap-3" data-testid="item-footer-email">
-                <Mail className="h-4 w-4 text-primary flex-shrink-0" />
-                <a
-                  href="mailto:presfades@gmail.com"
-                  className="text-foreground/70 hover:text-primary transition-colors"
-                  data-testid="link-footer-email"
-                >
-                  presfades@gmail.com
+                  <Instagram className="h-5 w-5 text-primary" />
                 </a>
               </div>
             </div>
+
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-foreground" data-testid="heading-footer-quicklinks">Quick Links</h3>
+              <ul className="space-y-3">
+                {quickLinks.map((link) => (
+                  <li key={link.id}>
+                    <button
+                      onClick={() => scrollToSection(link.id)}
+                      className="text-foreground/70 hover:text-primary transition-colors"
+                      data-testid={`link-footer-${link.id}`}
+                    >
+                      {link.label}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="space-y-6">
+              <h3 className="text-lg font-semibold text-foreground" data-testid="heading-footer-contact">Contact</h3>
+              <ul className="space-y-4">
+                <li>
+                  <a
+                    href="tel:4699010585"
+                    className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors group"
+                    data-testid="link-phone-footer"
+                  >
+                    <Phone className="h-5 w-5 text-primary" />
+                    <span>(469) 901-0585</span>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:presfades@gmail.com"
+                    className="flex items-center gap-3 text-foreground/70 hover:text-primary transition-colors group"
+                    data-testid="link-email-footer"
+                  >
+                    <Mail className="h-5 w-5 text-primary" />
+                    <span>presfades@gmail.com</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div className="space-y-4" data-testid="section-footer-hours">
-            <h3 className="font-serif font-bold text-lg text-foreground" data-testid="heading-footer-hours">
-              Hours
-            </h3>
-            <div className="space-y-2 text-sm text-foreground/70">
-              <div className="flex justify-between" data-testid="item-footer-hours-weekday">
-                <span>Monday - Saturday</span>
-                <span className="text-primary">9:00 AM - 7:00 PM</span>
-              </div>
-              <div className="flex justify-between" data-testid="item-footer-hours-sunday">
-                <span>Sunday</span>
-                <span>Closed</span>
-              </div>
-              <p className="pt-2 text-xs text-primary" data-testid="text-footer-after-hours">
-                After-hours service available by appointment
+          <div className="pt-8 border-t border-primary/10">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+              <p className="text-sm text-muted-foreground" data-testid="text-copyright">
+                © {currentYear} Presfades. All rights reserved.
+              </p>
+              <p className="text-sm text-muted-foreground" data-testid="text-footer-tagline">
+                Dallas-Fort Worth's Premier Barbershop
               </p>
             </div>
           </div>
-        </div>
-
-        <div className="border-t border-border mt-8 pt-8 text-center">
-          <p className="text-sm text-muted-foreground" data-testid="text-footer-copyright">
-            &copy; {new Date().getFullYear()} Presfades. All rights reserved.
-          </p>
         </div>
       </div>
     </footer>
