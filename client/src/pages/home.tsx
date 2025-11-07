@@ -1,7 +1,7 @@
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { Services } from "@/components/services";
-import { InstagramFeed } from "@/components/instagram-feed";
+import { Testimonials } from "@/components/testimonials";
 import { Contact } from "@/components/contact";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
@@ -14,7 +14,7 @@ export default function Home() {
         <Hero />
         <About />
         <Services />
-        <InstagramFeed />
+        <Testimonials />
         <Contact />
       </main>
       <Footer />
