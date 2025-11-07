@@ -1,144 +1,131 @@
 import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Menu, X, Scissors } from "lucide-react";
 
-export default function Navigation() {
+const BOOKING_URL = "https://book.squareup.com/appointments/mhhy3h6z761e4o/location/LKWJHT5S9KSN3/services";
+
+export function Navigation() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setIsMobileMenuOpen(false);
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for sticky nav
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
-    closeMobileMenu();
-  };
-
-  const bookTransformation = () => {
-    // Track booking event with Google Analytics if available
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', 'click', {
-        event_category: 'engagement',
-        event_label: 'book_btn'
-      });
-    }
-    
-    // Redirect to Square booking
-    window.open('https://app.squareup.com/appointments/book/mhhy3h6z761e4o/LKWJHT5S9KSN3/start', '_blank');
-  };
-
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-
-    return () => {
-      document.body.style.overflow = '';
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
     };
-  }, [isMobileMenuOpen]);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+      setIsMobileMenuOpen(false);
+    }
+  };
+
+  const navItems = [
+    { label: "Home", id: "hero" },
+    { label: "About", id: "about" },
+    { label: "Services", id: "services" },
+    { label: "Contact", id: "contact" },
+  ];
 
   return (
-    <>
-      {/* Sticky Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-bg/95 backdrop-blur-sm border-b border-purple-500/20 h-[60px]">
-        <div className="flex items-center justify-between h-full px-4">
-          <div className="text-2xl font-bold gradient-text">PRESFADES</div>
-          
-          {/* Mobile Menu Toggle */}
-          <button 
-            onClick={toggleMobileMenu}
-            className="md:hidden w-12 h-12 flex items-center justify-center"
-            aria-label="Toggle mobile menu"
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          <button
+            onClick={() => scrollToSection("hero")}
+            className="flex items-center gap-2 group"
+            data-testid="link-home"
           >
-            <div className="w-6 h-6 flex flex-col justify-center space-y-1">
-              <span className="block w-full h-0.5 bg-brand-primary transition-all duration-300"></span>
-              <span className="block w-full h-0.5 bg-brand-primary transition-all duration-300"></span>
-              <span className="block w-full h-0.5 bg-brand-primary transition-all duration-300"></span>
+            <div className="relative">
+              <Scissors className="h-8 w-8 text-primary transition-transform group-hover:rotate-12" />
+              <div className="absolute inset-0 bg-primary/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
+            <span className="text-2xl font-serif font-bold text-foreground tracking-tight" data-testid="text-logo">
+              Pres<span className="text-primary">fades</span>
+            </span>
           </button>
-          
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            <button 
-              onClick={() => scrollToSection('services')} 
-              className="text-brand-secondary hover:text-brand-primary transition-colors"
-            >
-              Services
-            </button>
-            <button 
-              onClick={() => scrollToSection('about')} 
-              className="text-brand-secondary hover:text-brand-primary transition-colors"
-            >
-              About
-            </button>
-            <button 
-              onClick={() => scrollToSection('gallery')} 
-              className="text-brand-secondary hover:text-brand-primary transition-colors"
-            >
-              Gallery
-            </button>
-            <button 
-              onClick={() => scrollToSection('contact')} 
-              className="text-brand-secondary hover:text-brand-primary transition-colors"
-            >
-              Contact
-            </button>
-            <button 
-              onClick={bookTransformation} 
-              className="btn-gradient text-white px-6 py-3 rounded-full font-semibold"
-            >
-              BOOK NOW
-            </button>
-          </div>
-        </div>
-      </nav>
 
-      {/* Mobile Menu */}
-      <div className={`mobile-menu fixed top-0 right-0 w-full h-full bg-brand-bg z-40 md:hidden ${isMobileMenuOpen ? 'open' : ''}`}>
-        <div className="flex flex-col items-center justify-center h-full space-y-8">
-          <button 
-            onClick={() => scrollToSection('services')} 
-            className="text-2xl text-brand-primary font-semibold"
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors relative group"
+                data-testid={`link-${item.id}`}
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+              </button>
+            ))}
+            <Button
+              asChild
+              size="default"
+              className="font-semibold"
+              data-testid="button-book-nav"
+            >
+              <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                BOOK NOW
+              </a>
+            </Button>
+          </div>
+
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-foreground"
+            data-testid="button-mobile-menu"
           >
-            Services
-          </button>
-          <button 
-            onClick={() => scrollToSection('about')} 
-            className="text-2xl text-brand-primary font-semibold"
-          >
-            About
-          </button>
-          <button 
-            onClick={() => scrollToSection('gallery')} 
-            className="text-2xl text-brand-primary font-semibold"
-          >
-            Gallery
-          </button>
-          <button 
-            onClick={() => scrollToSection('contact')} 
-            className="text-2xl text-brand-primary font-semibold"
-          >
-            Contact
-          </button>
-          <button 
-            onClick={bookTransformation} 
-            className="btn-gradient text-white px-8 py-4 rounded-full font-semibold text-lg"
-          >
-            BOOK NOW
+            {isMobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
+
+        {isMobileMenuOpen && (
+          <div className="md:hidden py-4 border-t border-border">
+            <div className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-left px-4 py-2 text-foreground/80 hover:text-primary hover:bg-primary/5 rounded-md transition-colors"
+                  data-testid={`link-mobile-${item.id}`}
+                >
+                  {item.label}
+                </button>
+              ))}
+              <Button
+                asChild
+                size="default"
+                className="mx-4 font-semibold"
+                data-testid="button-book-mobile"
+              >
+                <a href={BOOKING_URL} target="_blank" rel="noopener noreferrer">
+                  BOOK NOW
+                </a>
+              </Button>
+            </div>
+          </div>
+        )}
       </div>
-    </>
+    </nav>
   );
 }

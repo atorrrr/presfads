@@ -11,18 +11,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          
+
       - name: Install dependencies
         run: npm ci
-        
+
       - name: Run type checking
         run: npm run check
-        
+
       - name: Build application
         run: npm run build
 
@@ -41,12 +41,12 @@ jobs:
             -H "Authorization: Bearer ${RENDER_API_KEY}" \
             -H "Content-Type: application/json" \
             -d '{"clearCache": false}'
-            
+
       - name: Notify deployment started
         if: success()
         run: |
           echo "🚀 Development deployment started for commit ${{ github.sha }}"
-          
+
       - name: Wait for deployment
         env:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
@@ -54,15 +54,15 @@ jobs:
         run: |
           echo "Waiting for deployment to complete..."
           sleep 30
-          
+
           for i in {1..20}; do
             DEPLOY_STATUS=$(curl -s \
               "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys?limit=1" \
               -H "Authorization: Bearer ${RENDER_API_KEY}" \
               | jq -r '.[0].deploy.status')
-              
+
             echo "Deployment status: ${DEPLOY_STATUS}"
-            
+
             if [[ "${DEPLOY_STATUS}" == "live" ]]; then
               echo "✅ Deployment successful!"
               exit 0
@@ -70,9 +70,10 @@ jobs:
               echo "❌ Deployment failed!"
               exit 1
             fi
-            
+
             sleep 30
           done
-          
+
           echo "⏱️ Deployment timed out"
           exit 1
+
