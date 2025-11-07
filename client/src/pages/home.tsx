@@ -5,6 +5,7 @@ import { Testimonials } from "@/components/testimonials";
 import { Contact } from "@/components/contact";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
+import { FloatingBookButton } from "@/components/floating-book-button";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <FloatingBookButton />
     </div>
   );
 }
