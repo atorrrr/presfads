@@ -4,7 +4,6 @@ import { urlencoded } from "express";
 import multer from "multer";
 import { createServer, type Server } from "http";
 import fetch from "node-fetch";
-import { Pool } from "pg";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import twilio from "twilio";
 
