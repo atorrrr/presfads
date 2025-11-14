@@ -6,22 +6,23 @@ import { Contact } from "@/components/contact";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { FloatingBookButton } from "@/components/floating-book-button";
-import { LeadMagnetPopup } from "@/components/lead-magnet-popup";
+import { LeadMagnetProvider } from "@/components/lead-magnet-popup";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
-      <FloatingBookButton />
-      <LeadMagnetPopup />
-    </div>
+    <LeadMagnetProvider>
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <main>
+          <Hero />
+          <About />
+          <Services />
+          <Testimonials />
+          <Contact />
+        </main>
+        <Footer />
+        <FloatingBookButton />
+      </div>
+    </LeadMagnetProvider>
   );
 }

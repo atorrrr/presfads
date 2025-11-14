@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, createContext, useContext, type ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -35,8 +35,67 @@ const leadFormSchema = z.object({
 
 type LeadFormValues = z.infer<typeof leadFormSchema>;
 
-export function LeadMagnetPopup() {
+interface LeadMagnetContextType {
+  openPopup: () => void;
+}
+
+const LeadMagnetContext = createContext<LeadMagnetContextType | null>(null);
+
+export function useLeadMagnet() {
+  const context = useContext(LeadMagnetContext);
+  if (!context) {
+    throw new Error("useLeadMagnet must be used within LeadMagnetProvider");
+  }
+  return context;
+}
+
+export function LeadMagnetProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsOpen(true);
+  };
+
+  useEffect(() => {
+    const hasSeenPopup = localStorage.getItem("presfades_lead_popup_seen");
+    
+    if (!hasSeenPopup) {
+      // Show after 3 seconds
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+      }, 3000);
+
+      // Show on exit intent (mouse leaving viewport at top)
+      const handleMouseLeave = (e: MouseEvent) => {
+        if (e.clientY <= 0 && !isOpen) {
+          setIsOpen(true);
+        }
+      };
+
+      document.addEventListener("mouseleave", handleMouseLeave);
+
+      return () => {
+        clearTimeout(timer);
+        document.removeEventListener("mouseleave", handleMouseLeave);
+      };
+    }
+  }, [isOpen]);
+
+  return (
+    <LeadMagnetContext.Provider value={{ openPopup }}>
+      {children}
+      <LeadMagnetPopupInternal isOpen={isOpen} setIsOpen={setIsOpen} />
+    </LeadMagnetContext.Provider>
+  );
+}
+
+function LeadMagnetPopupInternal({ 
+  isOpen, 
+  setIsOpen 
+}: { 
+  isOpen: boolean; 
+  setIsOpen: (open: boolean) => void;
+}) {
   const [isSuccess, setIsSuccess] = useState(false);
   const { toast } = useToast();
 
@@ -77,18 +136,6 @@ export function LeadMagnetPopup() {
     },
   });
 
-  useEffect(() => {
-    const hasSeenPopup = localStorage.getItem("presfades_lead_popup_seen");
-    
-    if (!hasSeenPopup) {
-      const timer = setTimeout(() => {
-        setIsOpen(true);
-      }, 8000);
-
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
   const handleClose = (open: boolean) => {
     setIsOpen(open);
     if (!open) {
@@ -115,11 +162,12 @@ export function LeadMagnetPopup() {
             </div>
             <DialogHeader>
               <DialogTitle className="text-2xl font-serif" data-testid="heading-success">
-                Check Your Phone! 📱
+                Text Message Sent! 📱
               </DialogTitle>
-              <DialogDescription className="text-base" data-testid="text-success-message">
-                We've sent you an SMS with a link to share your inspiration photos.
-                Our team will review and get back to you shortly!
+              <DialogDescription className="text-base leading-relaxed" data-testid="text-success-message">
+                <strong className="text-foreground">Check your phone now!</strong>
+                <br /><br />
+                We just sent you a text with a secure upload link. Click it to share your hairstyle inspiration photos, and Preston will review them personally and reach out to schedule your appointment.
               </DialogDescription>
             </DialogHeader>
           </div>
@@ -129,12 +177,17 @@ export function LeadMagnetPopup() {
               <div className="flex items-center gap-2">
                 <Sparkles className="h-6 w-6 text-primary" />
                 <DialogTitle className="text-2xl font-serif" data-testid="heading-lead-magnet">
-                  Get Your Free Consultation
+                  Get Your Free SMS Consultation
                 </DialogTitle>
               </div>
-              <DialogDescription className="text-base" data-testid="text-lead-description">
-                Share your hairstyle inspiration with us! We'll send you a personalized SMS consultation
-                and help you achieve the perfect look.
+              <DialogDescription className="text-base leading-relaxed" data-testid="text-lead-description">
+                <strong className="text-foreground">Here's what happens next:</strong>
+                <br />
+                1. We'll text you a secure link instantly
+                <br />
+                2. Upload your hairstyle inspiration photos
+                <br />
+                3. Preston reviews and reaches out to schedule
               </DialogDescription>
             </DialogHeader>
 
@@ -189,21 +242,27 @@ export function LeadMagnetPopup() {
                   control={form.control}
                   name="consent"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border border-primary/20 p-4 bg-primary/5">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                          data-testid="checkbox-consent"
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel className="text-sm font-normal cursor-pointer">
-                          I agree to receive SMS messages from Presfades for consultation purposes.
-                          Standard message rates may apply.
-                        </FormLabel>
-                        <FormMessage />
+                    <FormItem>
+                      <div className="flex flex-row items-start space-x-3 space-y-0 rounded-md border border-primary/20 p-4 bg-primary/5">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            data-testid="checkbox-consent"
+                            id="consent-checkbox"
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none flex-1">
+                          <FormLabel 
+                            htmlFor="consent-checkbox"
+                            className="text-sm font-normal cursor-pointer"
+                          >
+                            I agree to receive SMS messages from Presfades for consultation purposes.
+                            Standard message rates may apply.
+                          </FormLabel>
+                        </div>
                       </div>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -215,7 +274,7 @@ export function LeadMagnetPopup() {
                   disabled={leadMutation.isPending}
                   data-testid="button-submit-lead"
                 >
-                  {leadMutation.isPending ? "Sending..." : "Get Free Consultation"}
+                  {leadMutation.isPending ? "Sending SMS..." : "Send Me The Link"}
                 </Button>
 
                 <p className="text-xs text-center text-muted-foreground" data-testid="text-privacy-note">
