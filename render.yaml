@@ -1,0 +1,36 @@
+services:
+  # PostgreSQL Database
+  - type: pserv
+    name: presfads-db
+    env: docker
+    plan: starter  # or 'free' for 90-day free tier
+    ipAllowList: []  # empty means allow connections from your Render services
+
+  # Web Service
+  - type: web
+    name: presfads-fullstack
+    env: node
+    rootDir: server              # where your Express code lives
+    buildCommand: |
+      pnpm install --frozen-lockfile
+      pnpm --filter client build          # build the Vite frontend
+    startCommand: pnpm start              # your "node index.js" or similar
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATABASE_URL
+        fromDatabase:
+          name: presfads-db
+          property: connectionString
+      - key: UPLOAD_TOKEN_SECRET
+        generateValue: true  # Render will generate a secure random value
+      # Add these manually in Render Dashboard:
+      # - TWILIO_ACCOUNT_SID
+      # - TWILIO_AUTH_TOKEN
+      # - TWILIO_MESSAGING_SERVICE_SID or TWILIO_FROM_NUMBER
+      # - AWS_ACCESS_KEY_ID
+      # - AWS_SECRET_ACCESS_KEY
+      # - AWS_REGION
+      # - S3_BUCKET
+      # - PUBLIC_BASE_URL (optional)
+      # - TURNSTILE_SECRET (optional)
