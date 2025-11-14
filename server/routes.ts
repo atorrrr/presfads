@@ -4,6 +4,7 @@ import { urlencoded } from "express";
 import multer from "multer";
 import { createServer, type Server } from "http";
 import fetch from "node-fetch";
+import pg from "pg";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import twilio from "twilio";
 
@@ -14,6 +15,8 @@ const upload = multer({ storage: multer.memoryStorage() });
 
 const databaseUrl = process.env.DATABASE_URL;
 const shouldUseSsl = Boolean(databaseUrl) && !/localhost|127\.0\.0\.1/.test(databaseUrl!);
+
+const { Pool } = pg;
 
 const pool = new Pool({
   connectionString: databaseUrl,
