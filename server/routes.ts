@@ -8,7 +8,7 @@ import pg from "pg";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import twilio from "twilio";
 
-import pg from "pg";
+
 const { Pool } = pg;
 
 const upload = multer({ storage: multer.memoryStorage() });
@@ -16,7 +16,6 @@ const upload = multer({ storage: multer.memoryStorage() });
 const databaseUrl = process.env.DATABASE_URL;
 const shouldUseSsl = Boolean(databaseUrl) && !/localhost|127\.0\.0\.1/.test(databaseUrl!);
 
-const { Pool } = pg;
 
 const pool = new Pool({
   connectionString: databaseUrl,
