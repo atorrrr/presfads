@@ -6,6 +6,7 @@ import { Contact } from "@/components/contact";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { FloatingBookButton } from "@/components/floating-book-button";
+import { LeadMagnetPopup } from "@/components/lead-magnet-popup";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingBookButton />
+      <LeadMagnetPopup />
     </div>
   );
 }
