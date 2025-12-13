@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Gift, Sparkles } from "lucide-react";
 
-const GIFT_CARD_URL = "https://book.squareup.com/appointments/mhhy3h6z761e4o/location/LKWJHT5S9KSN3/services";
+const GIFT_CARD_URL = "https://app.squareup.com/gift/MLWPZ9M9AH9TG/order";
 
 export function GiftCardBanner() {
   return (
