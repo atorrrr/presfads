@@ -7,11 +7,13 @@ Presfades is a premium barbershop website for a Dallas-Fort Worth elite fade spe
 The project is built as a full-stack application with React on the frontend and Express on the backend, though currently the backend is minimal as the site is primarily a static marketing page. The architecture supports future expansion into booking systems or user authentication.
 
 **Recent Updates:**
-- Gallery section replaced with Instagram feed featuring "Behind the Fades" branding
+- Holiday gift card promo added: banner below hero + popup with Christmas gold theme
+- Gallery section replaced with testimonials featuring client feedback
+- Floating "Book Now" button added with pulse animation
+- Lead magnet popup for SMS consultations with photo upload flow
 - All booking buttons updated to link to Square booking system (https://book.squareup.com/appointments/mhhy3h6z761e4o/location/LKWJHT5S9KSN3/services)
 - Google Tag Manager (GTM-M9CP6QKD) integrated for analytics tracking
 - Enhanced SEO with comprehensive meta tags and Schema.org structured data
-- About section profile image removed for cleaner, centered layout
 
 ## User Preferences
 
