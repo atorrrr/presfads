@@ -16,11 +16,13 @@ const upload = multer({ storage: multer.memoryStorage() });
 const databaseUrl = process.env.DATABASE_URL;
 const shouldUseSsl = Boolean(databaseUrl) && !/localhost|127\.0\.0\.1/.test(databaseUrl!);
 
-
-const pool = new Pool({
-  connectionString: databaseUrl,
-  ssl: shouldUseSsl ? { rejectUnauthorized: false } : undefined,
-});
+// Only create pool if DATABASE_URL is configured
+const pool = databaseUrl
+  ? new Pool({
+      connectionString: databaseUrl,
+      ssl: shouldUseSsl ? { rejectUnauthorized: false } : undefined,
+    })
+  : null;
 
 const twilioClient =
   process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN
@@ -35,6 +37,11 @@ const port = parseInt(process.env.PORT ?? "5000", 10);
 const baseUrl = process.env.PUBLIC_BASE_URL || `http://localhost:${port}`;
 
 async function initDatabase() {
+  if (!pool) {
+    console.log("Skipping database initialization - DATABASE_URL not configured");
+    return;
+  }
+
   await pool.query(`
     CREATE TABLE IF NOT EXISTS leads (
       id UUID PRIMARY KEY,
@@ -264,6 +271,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   await initDatabase();
 
   app.post("/api/lead", async (req: Request, res: Response) => {
+    if (!pool) {
+      return res.status(503).json({ error: "Lead capture service is not configured." });
+    }
+
     const {
       name = null,
       email = null,
@@ -325,6 +336,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/webhooks/sms", urlencoded({ extended: false }), async (req: Request, res: Response) => {
+    if (!pool) {
+      res.set("Content-Type", "text/xml");
+      return res.send("<Response></Response>");
+    }
+
     const from = req.body?.From as string | undefined;
     const body = (req.body?.Body as string | undefined) ?? "";
     const mediaCount = parseInt((req.body?.NumMedia as string | undefined) ?? "0", 10);
@@ -407,6 +423,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.get("/upload/:token", async (req: Request, res: Response) => {
+    if (!pool) {
+      return res.status(503).send("Upload service is not configured.");
+    }
+
     const { token } = req.params;
 
     try {
@@ -482,6 +502,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   app.post("/upload", upload.array("files", 10), async (req: Request, res: Response) => {
+    if (!pool) {
+      return res.status(503).json({ error: "Upload service is not configured." });
+    }
+
     const token = (req.headers["x-upload-token"] as string | undefined) ?? req.body?.uploadToken;
 
     if (!token) {
