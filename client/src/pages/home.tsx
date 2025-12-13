@@ -6,6 +6,9 @@ import { Contact } from "@/components/contact";
 import { Navigation } from "@/components/navigation";
 import { Footer } from "@/components/footer";
 import { FloatingBookButton } from "@/components/floating-book-button";
+// import { LeadMagnetProvider } from "@/components/lead-magnet-popup";
+import { GiftCardBanner } from "@/components/gift-card-banner";
+import { GiftCardPopup } from "@/components/gift-card-popup";
 
 export default function Home() {
   return (
@@ -13,6 +16,7 @@ export default function Home() {
       <Navigation />
       <main>
         <Hero />
+        <GiftCardBanner />
         <About />
         <Services />
         <Testimonials />
@@ -20,6 +24,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingBookButton />
+      <GiftCardPopup />
     </div>
   );
 }
