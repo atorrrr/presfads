@@ -16,18 +16,10 @@ export function GiftCardPopup() {
 
   useEffect(() => {
     const hasSeenGiftPopup = localStorage.getItem("presfades_gift_popup_seen");
-    const hasSeenLeadPopup = localStorage.getItem("presfades_lead_popup_seen");
     
     if (!hasSeenGiftPopup) {
       const timer = setTimeout(() => {
-        if (hasSeenLeadPopup) {
-          setIsOpen(true);
-        } else {
-          const delayedTimer = setTimeout(() => {
-            setIsOpen(true);
-          }, 8000);
-          return () => clearTimeout(delayedTimer);
-        }
+        setIsOpen(true);
       }, 5000);
 
       return () => clearTimeout(timer);
